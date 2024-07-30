@@ -1,0 +1,72 @@
+.control-center{
+    width:100%;
+    height: 100%;
+    display: grid;
+    position: absolute;
+    left: 0;
+    z-index: 1000;
+    background: transparent;
+    margin: 0 !important;
+    backdrop-filter: sepia(0) blur(10px) contrast(100%);
+}
+
+
+.app-running{
+    background:rgba(255, 255, 255, 0.7);
+    padding: 1rem 2rem;
+    text-align: left;
+    border-radius: 1rem !important;
+    margin:1rem 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.control-notify{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    padding: 1rem 0;
+}
+.control-center-close{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.control-center-close-btn{
+    width: 9rem;
+    height: .5rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    display: block;
+}
+
+.control-center .MuiSlider-thumb{
+    display: none;
+}
+
+.control-center-clear-btn{
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+}
+
+.control-center-left{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}

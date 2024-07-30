@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>主机配置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/connect/style.css">
+    <script src="./assets/litegraph/libs/utils.js"></script>
+
+    <script type="text/javascript">
+        // 扩展API加载完毕后调用onPlusReady回调函数
+        document.addEventListener("plusready", onPlusReady, false);
+        // 扩展API加载完毕，现在可以正常调用扩展API
+        function onPlusReady() {
+            var e = document.getElementById("scan");
+            e.removeAttribute("disabled");
+        }
+        var scan = null;
+        function onmarked(type, result) {
+            var text = '未知: ';
+            switch (type) {
+                case plus.barcode.QR:
+                    text = 'QR: ';
+                    break;
+                case plus.barcode.EAN13:
+                    text = 'EAN13: ';
+                    break;
+                case plus.barcode.EAN8:
+                    text = 'EAN8: ';
+                    break;
+            }
+            addHostScan(removeTrailingSlash(result))
+            hideScan();
+            scan.cancel()
+            scan.close()
+            GoHome()
+        }
+        function startRecognize() {
+            scan = new plus.barcode.Barcode('bcid');
+            scan.onmarked = onmarked;
+        }
+        function startScan() {
+            scan.start();
+        }
+        function removeTrailingSlash(url) {
+            if (url.endsWith('/')) {
+                return url.slice(0, -1);
+            }
+            return url;
+        }
+    </script>
+</head>
+
+<body>
+<!-- partial:index.partial.html -->
+<!-- check the Comments for more info -->
+
+<body class="back-row-toggle splat-toggle">
+
+
+
+<div class="rain front-row"></div>
+<div class="rain back-row"></div>
+
+<div class="mid">
+    <div>
+        <h2>添加主机</h2>
+        <button class="button-86" onclick="startScanQrCode()" role="button">扫一扫</button>
+        <div id="bcid" class="hidden"></div>
+    </div>
+
+    <div class="input">
+        <input type="text" class="host-input">
+        <button class="button-86" onclick="addHost()" role="button">添加</button>
+        <button class="button-86" onclick="GoHome()" role="button">完成</button>
+    </div>
+    <h4>主机列表</h4>
+    <div class="list">
+
+    </div>
+</div>
+
+</body>
+<!-- partial -->
+<script src='./assets/connect/jquery-2.2.4.min.js'></script>
+<script src="./assets/connect/script.js"></script>
+<script src="./assets/connect/host.js"></script>
+
+</body>
+<script>
+    initHosts()
+    function hideScan() {
+        document.getElementById("bcid").style.display = "none";
+    }
+
+    function showScan() {
+        document.getElementById("bcid").style.display = "block";
+    }
+
+    function startScanQrCode() {
+        let scanShowArea = document.getElementById('bcid')
+        showScan()
+        startRecognize()
+        startScan()
+    }
+</script>
+
+</html>
