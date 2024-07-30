@@ -37,17 +37,18 @@
 
 ## 1. 📃项目简介
 * 💻️这是一个开源的副屏面控制台。</br>
-* 🎴主要用于快速启动```应用```、```网页```、```文件```、```指令```。</br>
-* 📟️并支持```可视化脚本编程```。
+* 🎴主要用于快速启动`应用`、`网页`、`文件`、`指令`。</br>
+* 📟️并支持`可视化脚本编程`。
 
 ## 2.🚀快速入门
-本软件启动后回自动用浏览器打开面板，默认地址为🌍️：```http://127.0.0.1:58433```
+本软件启动后回自动用浏览器打开面板，默认地址为🌍️：`http://127.0.0.1:58433`
 
 ### 2.1💡界面简介
 ![首页简介](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/home.png)
 
 ***添加主机***</br>
-本系统支持```浏览器```、```安卓应用```。需要电脑端和手机端连接```同一个局域网```。</br>
+本系统支持 `🌐浏览器`、`📱安卓应用`。需要电脑端和手机端连接 🌐同一个`局域网`。
+
 ![添加主机](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_host.gif)
 
 ### 2.2 ➕添加应用
@@ -55,61 +56,63 @@
 ![添加网页](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_web.gif)
 
 ### 2.3 🎛️系统设置
-***修改壁纸***
-壁纸支持的格式：jpg、png、mp4
+*** 修改壁纸 ***
+壁纸支持的格式: `📷jpg`, `🖼️png`, `🎬mp4`
 ![修改壁纸](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_bg.gif)
 
-***修改主题模式***
-本软件支持```暗黑模式```、```白天模式```。
+*** 修改主题模式 ***
+本软件支持 🌜`暗黑模式`、🌞`白天模式`。
 ![修改主题](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_theme.gif)
 
 
 ## 3. 🖥️桌面使用教程
 
 ### 3.1  修改布局
-点击右上角的```布局```按钮，即可修改布局。修改完成时需要再次点击保存布局
+点击右上角的 📏`布局`按钮，即可修改布局。修改完成时需要再次点击保存布局 🔄。
 ![修改布局](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_layout.gif)
 
 ### 3.2 切换桌面
-桌面内的应用支持```多级桌面```。</br>
-也支持在添加应用内新增一个桌面。</br>
+* 桌面内的应用支持 🔄`多级桌面`。
+* 也支持在添加应用内新增一个桌面 📲。
 ![切换桌面](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_desktop.gif)
 
 ### 3.3 应用移动桌面
-可以将指定软件移动到其他桌面。</br>
+* 可以将指定软件 📤移动到其他桌面。
 ![应用移动桌面](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/move_desktop.gif)
 
 ### 3.4 新增桌面
-可以在添加应用内新增一个桌面。</br>
+* 可以在添加应用内新增一个桌面 📲。
 ![新增桌面](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_desktop.gif)
 
 
 ## 4. 📱应用教程
 
 ### 4.1 分享应用
-右键点击应用，然后点击分享。浏览器就会自动下载分享包</br>
+* 右键点击应用 🖱️，然后点击分享 🔄。浏览器就会自动下载分享包 📥。
 
 ### 4.2 导入应用
-点击右上角的```控制中心```,然后点击```导入应用```。</br>
+* 点击右上角的 🛠️`控制中心`, 然后点击 📥`导入应用`.
 ![导入应用](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/import_app.gif)
 
 ### 4.3 自定义图标
-在```新增应用```的时候可以自定义图标。</br>
-目前支持三种图标方式：</br>
-1. 使用第三方图片地址作为图标。</br>
-2. 点击上传按钮，使用本地图片作为图标。</br>
-3. 使用```图标库```中图标（支持自选图标，自定义图标颜色、图标背景）。点击```自定义```按钮，然后可在搜索栏搜索图标。可在结果中选择图标。</br>
+* 在 🆕`新增应用` 的时候可以自定义图标。
+
+目前支持三种图标方式：
+1. 使用第三方图片地址作为图标 🌐.
+2. 点击上传按钮，使用本地图片作为图标 📂.
+3. 使用 🖼️`图标库` 中图标（支持自选图标，自定义图标颜色、图标背景）。点击 🎨`自定义` 按钮，然后可在搜索栏搜索图标。可在结果中选择图标 🔄.
 
 
 ## 5. 📚脚本教程
-本软件支持```可视化脚本编程```。</br>
-脚本语言是使用```python```实现</br>
-节点编程是线性运行，所以节点之间是```顺序执行```。</br>
-目前脚本编程主要有两个功能：
-1. 自动化脚本</br>
-2. 自定义组件</br>
+* 本软件支持 📊`可视化脚本编程`.
+* 脚本语言是使用 🐍`python` 实现.
+* 节点编程是线性运行，所以节点之间是 🔄`顺序执行`.
 
-目前支持的节点有：</br>
+目前脚本编程主要有两个功能：
+1. 自动化脚本 🤖.
+2. 自定义组件 🛠️.
+
+目前支持的节点有：
 ```
 "基础/开始(CMDStart)"
 "基础/结束(CMDEnd)"
@@ -163,62 +166,64 @@
 ![搜索节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/search_node.gif)
 
 #### 新增节点
-右键点击空白处，然后点击```Add Node```
+右键点击空白处 🖱️，然后点击 🆕`Add Node`.
 ![新增节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_node.gif)
 
 #### 节点操作
-1. 按住```Ctrl``` 然后移动鼠标可以选择多个节点</br>
-2. 选择节点后，点击```Ctrl+C``` 复制节点</br>
-3. 点击```Del```删除节点</br>
-4. 左键点击节点，可以移动点击的节点</br>
-5. 选择节点后，按住```shift```，移动鼠标，可以拖动```多个节点```</br>
+1. 按住 ⌃`Ctrl` 然后移动鼠标可以选择多个节点 🖱️.
+2. 选择节点后，点击 ⌃`Ctrl+C` 复制节点 📋.
+3. 点击 🗑️`Del` 删除节点.
+4. 左键点击节点，可以移动点击的节点 🔄.
+5. 选择节点后，按住 ⇧`Shift`, 移动鼠标，可以拖动 🔄`多个节点`.
 ![节点操作](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/node_operation.gif)
 
 #### 节点连接
-相同颜色和形状的节点可以连接
+相同颜色和形状的节点可以连接 🔗.
 ![节点连接](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/node_connect.gif)
 
 #### 测试运行
-点击右上角的```运行```按钮，即可运行脚本。</br>
-然后点击```日志```按钮，即可查看运行日志。</br>
+* 点击右上角的 🚀`运行` 按钮，即可运行脚本.
+* 然后点击 📋`日志` 按钮，即可查看运行日志.
 ![测试运行](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/run_script.gif)
 
 ### 5.1 自动化脚本编写
-自动化脚本的开始节点是```基础/开始(CMDStart)```</br>
-结束节点是```基础/结束(CMDEnd)```</br>
+* 自动化脚本的开始节点是`基础/开始(CMDStart)`</br>
+* 结束节点是`基础/结束(CMDEnd)`</br>
 
 #### 点击指定图片示例
 这个示例是：
-通过用户上传的图标，去点击windows 系统中任务栏中的```🪟```按钮。</br>
+通过用户上传的图标，去点击 Windows 系统中任务栏中的 🪟 按钮.
 ![点击指定图片示例](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/click_image.png)
 
 
 ### 5.2 自定义组件编写
 
-自定义组件是使用```脚本编程```编写的。</br>
-以```绘图/开始(DisplayStart)``` 节点开始</br>
-以```绘图/布局(DisplayGrid)``` 节点结束</br>
+* 自定义组件是使用`脚本编程`编写的
+* 以`绘图/开始(DisplayStart)` 节点开始
+* 以`绘图/布局(DisplayGrid)` 节点结束
+
 ![绘图-布局](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_grid.png)</br>
-组件的布局方式是grid（网格布局）</br>
-通过点击```左侧按钮```可以新增元素。</br>
-将布局内的元素拖拽到```删除```按钮可以删除元素。</br>
-目前```自定义组件```支持的元素有：</br>
 
-1. 纯文本（支持自定义点击脚本）
-2. 图片（支持自定义点击脚本）
-3. 输入框（Enter 键触发自定义点击脚本）
-4. 折线图
-5. 按钮 （支持自定义点击脚本）
-6. 选择框 
+* 组件的布局方式是 **grid** (网格布局) 📐
+* 通过点击 `左侧按钮` 可以新增元素 🚀
+* 将布局内的元素拖拽到 `删除` 按钮可以删除元素 🗑️
+  
+目前 `自定义组件` 支持的元素有：🎉
+1. 纯文本 📝 (支持自定义点击脚本)
+2. 图片 🖼️ (支持自定义点击脚本)
+3. 输入框 📋 (`Enter` 键触发自定义点击脚本)
+4. 折线图 📈
+5. 按钮 🔄 (支持自定义点击脚本)
+6. 选择框 📊
 
-以上的元素的样式还有内容是可以通过请求```三方API```获取的数据,以设置的内容。</br>
+以上元素的样式和内容都可以通过请求 **三方API** 🌐 获取的数据来设置。
 
 #### 必应搜索示例
 点此下载该应用：[必应搜索](https://github.com/bladexmm/x-panel/raw/main/static/share/bing搜索_share_2024-07-25_09-51-32.zip)</br>
 ![必应搜索示例](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/bing_search.png)
 
 #### 进阶搜索示例
-该示例支持自选搜索引擎，并且会自动保存选择的搜索引擎。</br>
+该示例还支持 **自选搜索引擎** 🔍 并且会自动保存选择的搜索引擎 💾。
 
 点此下载该应用：[进阶搜索](https://github.com/bladexmm/x-panel/raw/main/static/share/搜索一下_share_2024-07-25_10-00-24.zip)</br>
 
@@ -230,22 +235,24 @@
 #### 基础节点分组
 
 ***基础/开始(CMDStart)***</br>
-开始节点，用于运行脚本。</br>
-```自动化脚本```默认开始运行的节点</br>
+开始节点，用于运行脚本. 🚀</br>
+`自动化脚本` 默认开始运行的节点. 🔄
+
 ![开始节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/start_node.png)</br>
 
 
 ***基础/结束(CMDEnd)***</br>
-开始节点，用于运行脚本。</br>
-```自动化脚本```默认结束运行的节点</br>
+开始节点，用于运行脚本. 🚀</br>
+`自动化脚本` 默认结束运行的节点. 
+
 ![结束节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/end_node.png)</br>
 
 
 ***基础/合并运行(MultiMerge)***</br>
 
-当多个节点需要运行```同一节点```，可以使用这个节点。</br>
-点击```+```可以添加输入端口。</br>
-点击```-```可以删除输入端口。</br>
+当多个节点需要运行 `同一节点`，可以使用这个节点. 🔄  
+点击 `+` 可以添加输入端口. 🔄  
+点击 `-` 可以删除输入端口. 🗑️</br>
 ![合并运行节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/merge_node.gif)</br>
 
 ***基础/跳转运行(JumpNode)***</br>
