@@ -14,7 +14,7 @@
 * 系统应用：自动识别系统已经安装的应用
 ## 项目预览
 
-![首页](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/imgs/all_tiny.png)
+![首页](./static/imgs/all_tiny.png)
 
 
 ## 使用教程
