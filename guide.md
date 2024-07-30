@@ -56,12 +56,17 @@
 ![添加网页](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_web.gif)
 
 ### 2.3 🎛️系统设置
-*** 修改壁纸 ***
+
+* 修改壁纸
+  
 壁纸支持的格式: `📷jpg`, `🖼️png`, `🎬mp4`
+
 ![修改壁纸](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_bg.gif)
 
-*** 修改主题模式 ***
+* 修改主题模式
+
 本软件支持 🌜`暗黑模式`、🌞`白天模式`。
+
 ![修改主题](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_theme.gif)
 
 
@@ -74,14 +79,17 @@
 ### 3.2 切换桌面
 * 桌面内的应用支持 🔄`多级桌面`。
 * 也支持在添加应用内新增一个桌面 📲。
+
 ![切换桌面](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_desktop.gif)
 
 ### 3.3 应用移动桌面
 * 可以将指定软件 📤移动到其他桌面。
+
 ![应用移动桌面](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/move_desktop.gif)
 
 ### 3.4 新增桌面
 * 可以在添加应用内新增一个桌面 📲。
+
 ![新增桌面](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_desktop.gif)
 
 
