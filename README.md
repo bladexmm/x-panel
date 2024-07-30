@@ -14,12 +14,12 @@
 * 系统应用：自动识别系统已经安装的应用
 ## 项目预览
 
-![首页](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/imgs/all_tiny.png)
+![首页](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/imgs/all_tiny.png)
 
 
 ## 使用教程
 
-[立即查看](https://github.com/bladexmm/XBlade-panel/blob/main/guide.md)
+[立即查看](https://github.com/bladexmm/x-panel/blob/main/guide.md)
 
 ## 项目进度
 - [x] 新增应用

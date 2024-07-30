@@ -44,44 +44,44 @@
 本软件启动后回自动用浏览器打开面板，默认地址为🌍️：```http://127.0.0.1:58433```
 
 ### 2.1💡界面简介
-![首页简介](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/home.png)
+![首页简介](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/home.png)
 
 ***添加主机***</br>
 本系统支持```浏览器```、```安卓应用```。需要电脑端和手机端连接```同一个局域网```。</br>
-![添加主机](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/add_host.gif)
+![添加主机](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_host.gif)
 
 ### 2.2 ➕添加应用
 ***添加网页链接***
-![添加网页](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/add_web.gif)
+![添加网页](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_web.gif)
 
 ### 2.3 🎛️系统设置
 ***修改壁纸***
 壁纸支持的格式：jpg、png、mp4
-![修改壁纸](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/change_bg.gif)
+![修改壁纸](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_bg.gif)
 
 ***修改主题模式***
 本软件支持```暗黑模式```、```白天模式```。
-![修改主题](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/change_theme.gif)
+![修改主题](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_theme.gif)
 
 
 ## 3. 🖥️桌面使用教程
 
 ### 3.1  修改布局
 点击右上角的```布局```按钮，即可修改布局。修改完成时需要再次点击保存布局
-![修改布局](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/change_layout.gif)
+![修改布局](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_layout.gif)
 
 ### 3.2 切换桌面
 桌面内的应用支持```多级桌面```。</br>
 也支持在添加应用内新增一个桌面。</br>
-![切换桌面](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/change_desktop.gif)
+![切换桌面](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/change_desktop.gif)
 
 ### 3.3 应用移动桌面
 可以将指定软件移动到其他桌面。</br>
-![应用移动桌面](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/move_desktop.gif)
+![应用移动桌面](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/move_desktop.gif)
 
 ### 3.4 新增桌面
 可以在添加应用内新增一个桌面。</br>
-![新增桌面](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/add_desktop.gif)
+![新增桌面](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_desktop.gif)
 
 
 ## 4. 📱应用教程
@@ -91,7 +91,7 @@
 
 ### 4.2 导入应用
 点击右上角的```控制中心```,然后点击```导入应用```。</br>
-![导入应用](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/import_app.gif)
+![导入应用](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/import_app.gif)
 
 ### 4.3 自定义图标
 在```新增应用```的时候可以自定义图标。</br>
@@ -160,11 +160,11 @@
 ### 5.1 基础操作
 
 #### 双击空白处搜索节点
-![搜索节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/search_node.gif)
+![搜索节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/search_node.gif)
 
 #### 新增节点
 右键点击空白处，然后点击```Add Node```
-![新增节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/add_node.gif)
+![新增节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/add_node.gif)
 
 #### 节点操作
 1. 按住```Ctrl``` 然后移动鼠标可以选择多个节点</br>
@@ -172,16 +172,16 @@
 3. 点击```Del```删除节点</br>
 4. 左键点击节点，可以移动点击的节点</br>
 5. 选择节点后，按住```shift```，移动鼠标，可以拖动```多个节点```</br>
-![节点操作](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/node_operation.gif)
+![节点操作](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/node_operation.gif)
 
 #### 节点连接
 相同颜色和形状的节点可以连接
-![节点连接](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/node_connect.gif)
+![节点连接](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/node_connect.gif)
 
 #### 测试运行
 点击右上角的```运行```按钮，即可运行脚本。</br>
 然后点击```日志```按钮，即可查看运行日志。</br>
-![测试运行](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/run_script.gif)
+![测试运行](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/run_script.gif)
 
 ### 5.1 自动化脚本编写
 自动化脚本的开始节点是```基础/开始(CMDStart)```</br>
@@ -190,7 +190,7 @@
 #### 点击指定图片示例
 这个示例是：
 通过用户上传的图标，去点击windows 系统中任务栏中的```🪟```按钮。</br>
-![点击指定图片示例](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/click_image.png)
+![点击指定图片示例](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/click_image.png)
 
 
 ### 5.2 自定义组件编写
@@ -198,7 +198,7 @@
 自定义组件是使用```脚本编程```编写的。</br>
 以```绘图/开始(DisplayStart)``` 节点开始</br>
 以```绘图/布局(DisplayGrid)``` 节点结束</br>
-![绘图-布局](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_grid.png)</br>
+![绘图-布局](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_grid.png)</br>
 组件的布局方式是grid（网格布局）</br>
 通过点击```左侧按钮```可以新增元素。</br>
 将布局内的元素拖拽到```删除```按钮可以删除元素。</br>
@@ -214,15 +214,15 @@
 以上的元素的样式还有内容是可以通过请求```三方API```获取的数据,以设置的内容。</br>
 
 #### 必应搜索示例
-点此下载该应用：[必应搜索](https://github.com/bladexmm/XBlade-panel/raw/main/static/share/bing搜索_share_2024-07-25_09-51-32.zip)</br>
-![必应搜索示例](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/bing_search.png)
+点此下载该应用：[必应搜索](https://github.com/bladexmm/x-panel/raw/main/static/share/bing搜索_share_2024-07-25_09-51-32.zip)</br>
+![必应搜索示例](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/bing_search.png)
 
 #### 进阶搜索示例
 该示例支持自选搜索引擎，并且会自动保存选择的搜索引擎。</br>
 
-点此下载该应用：[进阶搜索](https://github.com/bladexmm/XBlade-panel/raw/main/static/share/搜索一下_share_2024-07-25_10-00-24.zip)</br>
+点此下载该应用：[进阶搜索](https://github.com/bladexmm/x-panel/raw/main/static/share/搜索一下_share_2024-07-25_10-00-24.zip)</br>
 
-![进阶搜索示例](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/advanced_search.png)
+![进阶搜索示例](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/advanced_search.png)
 
 
 ### 5.3 节点介绍
@@ -232,13 +232,13 @@
 ***基础/开始(CMDStart)***</br>
 开始节点，用于运行脚本。</br>
 ```自动化脚本```默认开始运行的节点</br>
-![开始节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/start_node.png)</br>
+![开始节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/start_node.png)</br>
 
 
 ***基础/结束(CMDEnd)***</br>
 开始节点，用于运行脚本。</br>
 ```自动化脚本```默认结束运行的节点</br>
-![结束节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/end_node.png)</br>
+![结束节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/end_node.png)</br>
 
 
 ***基础/合并运行(MultiMerge)***</br>
@@ -246,7 +246,7 @@
 当多个节点需要运行```同一节点```，可以使用这个节点。</br>
 点击```+```可以添加输入端口。</br>
 点击```-```可以删除输入端口。</br>
-![合并运行节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/merge_node.gif)</br>
+![合并运行节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/merge_node.gif)</br>
 
 ***基础/跳转运行(JumpNode)***</br>
 该节点出现的主要目的使编程界面更加简洁，以避免连接线的```交错过多```，不便阅读。</br>
@@ -254,7 +254,7 @@
 跳转节点只会跳转到相同```name```的节点。</br>
 相同```name```的节点可以有```多个```连接了```输入端口```的节点。但只能有```一个```连接```输出端口```的节点。</br>
 并且跳转到的节点的```输出端口```必须```链接其他节点```才能成功跳转。</br>
-![跳转运行节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/jump_node.png)</br>
+![跳转运行节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/jump_node.png)</br>
 
 
 #### 编程节点分组
@@ -263,7 +263,7 @@
 ***编程/等待(TimeWait)***</br>
 这里可以设置等待时间（毫秒: 1000ms=1s）。</br>
 运行到该节点时，程序会等待设置的时间。</br>
-![等待节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/wait_node.png)</br>
+![等待节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/wait_node.png)</br>
 
 ***编程/请求接口(FetchApi)***</br>
 目前只支持返回体为json的接口。</br>
@@ -281,12 +281,12 @@
 2. ```response``` (string) 返回的data
 3. ```error``` 请求失败执行该输出连接的节点
    
-![请求接口节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/fetch_api_node.png)</br>
+![请求接口节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/fetch_api_node.png)</br>
    
 ***编程/获取JSON参数(GetJson)***</br>
 该节点用于获取json数据中的指定键值。</br>
 也可以获取数组</br>
-![获取JSON参数节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/get_json_node.png)</br>
+![获取JSON参数节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/get_json_node.png)</br>
 以下json为例：</br>
 ```json
 [
@@ -383,7 +383,7 @@
 
 ***编程/判断(IfValid)***</br>
 判断input1和input2是否相等，如果相等则执行true，否则执行false。</br>
-![判断节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/if_valid_node.png)</br>
+![判断节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/if_valid_node.png)</br>
 
 
 ***编程/选择结构(switchValid)***</br>
@@ -392,12 +392,12 @@
 如果都不匹配就执行error的输出节点。</br>
 可以点击```+```添加输入端口。</br>
 点击```-```删除输入端口。</br>
-![选择结构节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/switch_valid_node.gif)</br>
+![选择结构节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/switch_valid_node.gif)</br>
 
 
 ***编程/格式化字符串(FormatText)***</br>
 主要在字符串中插入变量。</br>
-![格式化字符串节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/format_text_node.gif)</br>
+![格式化字符串节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/format_text_node.gif)</br>
 
 
 ***编程/记录日志(logDebug)***</br>
@@ -407,7 +407,7 @@
 日志的路径为：软件安装路径/logs</br>
 日志存放的格式：年/月/日.log</br>
 例如：2023/07/19.log </br>
-![日志节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/log_debug_node.gif)</br>
+![日志节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/log_debug_node.gif)</br>
 
 
 ***所有的变量都是要相同```name```和```type```才能获取成功***
@@ -417,7 +417,7 @@
 选择type然后点击```+```添加对应类型的输入端口。</br>
 点击```-```删除输入端口。</br>
 输入```name```为变量名。</br>
-![局部变量节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/set_local_variables_node.gif)</br>
+![局部变量节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/set_local_variables_node.gif)</br>
 
 
 ***编程/获取局部变量(GetLocalVariables)***</br>
@@ -425,7 +425,7 @@
 选择type然后点击```+```添加对应类型的输出端口。</br>
 点击```-```删除输出端口。</br>
 输入```name```为变量名。</br>
-![局部变量节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/get_local_variables_node.gif)</br>
+![局部变量节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/get_local_variables_node.gif)</br>
 
 
 ***编程/配置全局变量(SetGlobalVariables)***</br>
@@ -433,7 +433,7 @@
 选择type然后点击```+```添加对应类型的输入端口。</br>
 点击```-```删除输入端口。</br>
 输入```name```为变量名。</br>
-![全局变量节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/set_global_variables_node.gif)</br>
+![全局变量节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/set_global_variables_node.gif)</br>
 
 
 ***编程/获取全局变量(GetGlobalVariables)***</br>
@@ -441,27 +441,27 @@
 选择type然后点击```+```添加对应类型的输出端口。</br>
 点击```-```删除输出端口。</br>
 输入```name```为变量名。</br>
-![全局变量节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/get_global_variables_node.gif)</br>
+![全局变量节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/get_global_variables_node.gif)</br>
 
 
 #### 输入节点分组
 可以添加一个默认的文本、列表、图片。</br>
 ***输入/文本(TextInput)***</br>
 定义一个输入文本节点。</br>
-![文本节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/text_input_node.gif)</br>
+![文本节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/text_input_node.gif)</br>
 
 
 ***输入/列表(ArrayInput)***</br>
 一行一个元素。</br>
-![列表节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/array_input_node.gif)</br>
+![列表节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/array_input_node.gif)</br>
 
 
 ***输入/图片(ImageInput)***</br>
 点击```上传图片```可以从本地选择图片。</br>
-![图片节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/image_input_node_upload.gif)</br>
+![图片节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/image_input_node_upload.gif)</br>
 
 点击```粘贴图片```从剪贴板中粘贴图片。</br>
-![图片节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/image_input_node_paste.gif)</br>
+![图片节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/image_input_node_paste.gif)</br>
 
 
 #### 自动化节点分组
@@ -474,7 +474,7 @@
 1. ```searchTime```：N秒内在屏幕中搜索图片的所在位置，单位为秒，默认为5s。</br>
 2. ```confidence```: 相似度，默认0.9。</br>
 3. ```grayscale```: 定位函数以稍微加快速度（大约 30%）。这会降低图像和屏幕截图的颜色饱和度，从而加快定位速度，但可能会导致误报匹配</br>
-![图片定位节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/locate_on_screen_node.png)</br>
+![图片定位节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/locate_on_screen_node.png)</br>
 
 
 ***自动化/查找图片(FindImage)***</br>
@@ -484,7 +484,7 @@
 没有找到图片时，会执行```error```连接的节点。</br>
 点击```+```添加图片输入接口和执行输出接口。</br>
 点击```-```删除图片输入接口和执行输出接口。</br>
-![查找图片节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/find_image_node.gif)</br>
+![查找图片节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/find_image_node.gif)</br>
 
 
 ***自动化/运行软件(startApp)***</br>
@@ -492,12 +492,12 @@
 参数说明：</br>
 1. ```path```: 要打开的软件的路径。当为 ```$path``` 的时候会获取该桌面应用的路径</br>
 2. ```folder```: 文件夹地址</br>
-![运行软件节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/start_app_node.png)</br>
+![运行软件节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/start_app_node.png)</br>
 
 
 ***自动化/打开链接(openLink)***</br>
 用默认浏览器打开链接</br>
-![打开链接节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/open_link_node.png)</br>
+![打开链接节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/open_link_node.png)</br>
 
 
 #### 组件节点分组
@@ -512,14 +512,14 @@
 创建组件实例后，可以点击```+```添加输入端口和输出端口。</br>
 新增端口的时候```name```为端口的名字，可以自定义。</br>
 ```type```为端口的类型。目前只支持(```cmd```,```text```,```array```,```location```,```response```)</br>
-![端口节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/subgraph_node.gif)</br>
+![端口节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/subgraph_node.gif)</br>
 
 进入和推出组件内部</br>
-![组件节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/subgraph_node_inside.gif)</br>
+![组件节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/subgraph_node_inside.gif)</br>
 
 组件内部节点的输出端口可以和组件外部的输入端口进行连接。</br>
 也可以在组件内部添加输入和输出端口。</br>
-![组件节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/subgraph_node_inside_2.gif)</br>
+![组件节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/subgraph_node_inside_2.gif)</br>
 
 
 ***组件/输入(SubgraphInput)***</br>
@@ -536,7 +536,7 @@
 ***模拟/快捷键(Hotkeys)***</br>
 模拟键盘操作</br>
 录制按键</br>
-![快捷键节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/hotkeys_node.gif)</br>
+![快捷键节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/hotkeys_node.gif)</br>
 参数说明：</br>
 1. ```inputType```: ```hotkeys```同时按下和松开所有按键,```typeWrite```依次点击每个按键,```keyDown```同时按住按键不放,```keyUp```同时松开按键</br>
 2. keys，以及记录的按键
@@ -544,7 +544,7 @@
 
 ***模拟/文本输入(TypeText)***</br>
 将value的内容和输入</br>
-![文本输入节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/type_text_node.png)</br>
+![文本输入节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/type_text_node.png)</br>
 
 
 ***模拟/鼠标移动(MouseMove)***</br>
@@ -552,24 +552,24 @@
 参数说明：</br>
 1. ```location```: x,y坐标。优先使用```输入接口```的坐标，当有```输入接口```的坐标时，```location```内的坐标用于从中心点开始偏移，如果为```x,y```就不偏移。当没有输入接口的坐标时，就用location内的坐标，从屏幕左上角开始，单位是px(像素点)</br>
 2. ```duration```: 移动到目标位置的时间，单位是s(秒)</br>
-![鼠标移动节点](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/mouse_move_node.png)</br>
+![鼠标移动节点](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/mouse_move_node.png)</br>
 
 
 ***模拟/鼠标左键(MouseLeft)***</br>
 鼠标左键点击。</br>
 参数说明：</br>
 1. ```type```: ```click```、```mouseDown```、```mouseUp``` 分别代表:```点击```、```按下```、```抬起```</br>
-![鼠标左键](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/mouse_left.png)</br>
+![鼠标左键](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/mouse_left.png)</br>
 
 ***模拟/鼠标中键(MouseMiddle)***</br>
 鼠标中键点击/滚动。</br>
 参数说明：</br>
 1. ```type```: ```click```、```scrollUp```、```scrollDown``` 分别代表:```点击```、```向上滚动```、```向下滚动```</br>
-![鼠标中键](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/mouse_middle.png)</br>
+![鼠标中键](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/mouse_middle.png)</br>
 
 ***模拟/鼠标右键(MouseRight)***</br>
 鼠标右键点击一下。</br>
-![鼠标右键](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/mouse_right.png)</br>
+![鼠标右键](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/mouse_right.png)</br>
 
 
 #### 绘图节点分组
@@ -584,16 +584,16 @@
 ***参数说明***</br>
 ```variant```: 显示样式</br>
 1. ```plain```</br>
-![plain](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_plain.png)
+![plain](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_plain.png)
 1. ```outlined```</br>
-![outlined](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_outlined.png)
+![outlined](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_outlined.png)
 1. ```soft```</br>
-![soft](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_soft.png)
+![soft](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_soft.png)
 1. ```solid```</br>
-![solid](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_solid.png)
+![solid](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_solid.png)
 
 ```color```: 颜色</br>
-![color](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_color.png)
+![color](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_color.png)
 
 
 
@@ -603,29 +603,29 @@
 
 ***绘图/布局(DisplayGrid)***</br>
 
-![grid](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_grid_info.png)</br>
+![grid](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_grid_info.png)</br>
 自定义显示组件必须```从此结束```</br>
 自定义显示组件是使用```grid```(网格布局)进行布局</br>
 ```添加```和```删除```元素的时候都会动态修改```输入接口```</br>
 
 **修改网格大小**</br>
-![grid](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_grid.gif)</br>
+![grid](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_grid.gif)</br>
 
 **添加元素**</br>
-![grid](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_add.gif)</br>
+![grid](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_add.gif)</br>
 
 **删除元素**</br>
-![grid](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_del.gif)</br>
+![grid](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_del.gif)</br>
 
 
 ***绘图/图片(DisplayImage)***</br>
-![grid](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_image.png)</br>
+![grid](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_image.png)</br>
 **onClick**
 当客户端点击时，会从onClick开始执行脚本
 
 
 ***绘图/文字(DisplayText)***</br>
-![grid](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_text.png)</br>
+![grid](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_text.png)</br>
 ``text``输入接口：显示的文本内容</br>
 
 **noWrap**</br>
@@ -637,7 +637,7 @@
 当客户端点击时，会从```onClick```开始执行脚本
 
 ***绘图/输入框(DisplayInput)***</br>
-![display_input](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_input.png)
+![display_input](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_input.png)
 
 **placeholder**
 空白时显示的文本</br>
@@ -648,10 +648,10 @@
 
 
 ***绘图/折线图(DisplayLineChart)***</br>
-![display_line_chart](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_line_chart.png)
+![display_line_chart](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_line_chart.png)
 
 **title**抬头显示文本</br>
-![display_chart_title](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_chart_title.png)
+![display_chart_title](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_chart_title.png)
 
 **data** 数据内容</br>
 **name** 对应数据的标题</br>
@@ -660,14 +660,14 @@
 
 
 ***绘图/按钮(DisplayButton)***</br>
-![display_button](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_button.png)
+![display_button](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_button.png)
 
 **placeholder** 占位文本</br>
 **onClick** 点击事件</br>
 
 
 ***绘图/选择框(DisplaySelector)***</br>
-![display_selector](https://raw.githubusercontent.com/bladexmm/XBlade-panel/main/static/guide/display_selector.png)
+![display_selector](https://raw.githubusercontent.com/bladexmm/x-panel/master/static/guide/display_selector.png)
 
 **placeholder** 占位文本</br>
 **data** 选择框数据内容</br>

@@ -4,7 +4,7 @@
 !define PRODUCT_NAME "XBLADE-PANEL"
 !define PRODUCT_VERSION "V2.1.2"
 !define PRODUCT_PUBLISHER "bladexmm"
-!define PRODUCT_WEB_SITE "https://github.com/bladexmm/XBlade-panel"
+!define PRODUCT_WEB_SITE "https://github.com/bladexmm/x-panel"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\XBLADE.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
