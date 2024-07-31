@@ -47,7 +47,8 @@
 ![首页简介](./static/guide/home.png)
 
 ***添加主机***</br>
-本系统支持 `🌐浏览器`、`📱安卓应用`。需要电脑端和手机端连接 🌐同一个`局域网`。
+
+* 本系统支持 `🌐浏览器`、`📱安卓应用`。需要电脑端和手机端连接 🌐同一个`局域网`。
 
 ![添加主机](./static/guide/add_host.gif)
 
@@ -280,12 +281,16 @@
 主要用于数据处理，以及逻辑处理。</br>
 
 ***编程/等待(TimeWait)***</br>
-这里可以设置等待时间（毫秒: 1000ms=1s）。</br>
-运行到该节点时，程序会等待设置的时间。</br>
+
+* 这里可以设置等待时间（毫秒: 1000ms=1s）。
+* 运行到该节点时，程序会等待设置的时间。
+
 ![等待节点](./static/guide/wait_node.png)</br>
 
 ***编程/请求接口(FetchApi)***</br>
-目前只支持返回体为json的接口。</br>
+
+* 目前只支持返回体为json的接口。
+
 输入端口：
 1. `url` 要请求的url
 2. `data` 其中一行一个，键名与键值用同一行，并用`:`隔开，必须是英文的符号
@@ -303,9 +308,12 @@
 ![请求接口节点](./static/guide/fetch_api_node.png)</br>
    
 ***编程/获取JSON参数(GetJson)***</br>
-该节点用于获取json数据中的指定键值。</br>
-也可以获取数组</br>
+
+* 该节点用于获取json数据中的指定键值。
+* 也可以获取数组
+
 ![获取JSON参数节点](./static/guide/get_json_node.png)</br>
+
 以下json为例：</br>
 ```json
 [
@@ -401,7 +409,8 @@
 
 
 ***编程/判断(IfValid)***</br>
-判断input1和input2是否相等，如果相等则执行true，否则执行false。</br>
+
+* 判断input1和input2是否相等，如果相等则执行true，否则执行false。
 
 ![判断节点](./static/guide/if_valid_node.png)</br>
 
@@ -418,7 +427,8 @@
 
 
 ***编程/格式化字符串(FormatText)***</br>
-主要在字符串中插入变量。</br>
+
+* 主要在字符串中插入变量。</br>
 
 ![格式化字符串节点](./static/guide/format_text_node.gif)</br>
 
@@ -590,7 +600,7 @@
 
 参数说明：</br>
 1. `inputType`: `hotkeys`同时按下和松开所有按键,`typeWrite`依次点击每个按键,`keyDown`同时按住按键不放,`keyUp`同时松开按键</br>
-2. keys，以及记录的按键
+2. `keys`: 输入的按键
 
 
 ***模拟/文本输入(TypeText)***</br>
@@ -679,9 +689,13 @@
 
 
 ***绘图/图片(DisplayImage)***</br>
+
 ![grid](./static/guide/display_image.png)</br>
+
 **onClick**
 * 当客户端点击时，会从onClick开始执行脚本
+
+
 
 
 ***绘图/文字(DisplayText)***</br>
@@ -718,26 +732,26 @@
 
 ![display_chart_title](./static/guide/display_chart_title.png)
 
-**data** 数据内容</br>
-**name** 对应数据的标题</br>
-**xAxis** x轴坐标内容</br>
-**onClick** 点击事件(目前未开发)</br>
+* `data`: 数据内容
+* `name`: 对应数据的标题
+* `xAxis`: x轴坐标内容
+* `onClick`: 点击事件(目前未开发)
 
 
 ***绘图/按钮(DisplayButton)***</br>
 
 ![display_button](./static/guide/display_button.png)
 
-**placeholder** 占位文本</br>
-**onClick** 点击事件</br>
+* `placeholder`: 占位文本
+* `onClick`: 点击事件
 
 
 ***绘图/选择框(DisplaySelector)***</br>
 
 ![display_selector](./static/guide/display_selector.png)
 
-**placeholder** 占位文本</br>
-**data** 选择框数据内容</br>
-**default** 默认选中项</br>
-**onChange** 选择框内容变化事件(目前未开发)</br>
-**value** 选择框选中内容</br>
+* `placeholder`: 占位文本
+* `data`: 选择框数据内容
+* `default`: 默认选中项
+* `onChange`: 选择框内容变化事件(目前未开发)
+* `value`: 选择框选中内容
