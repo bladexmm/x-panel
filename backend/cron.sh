@@ -21,7 +21,7 @@ chown -R www:www /www/wwwroot/x-panel-master/backend/data/app
 
 # 复制文件和目录
 cp /www/wwwroot/x-panel-master/backend/default/data/database.db /www/wwwroot/x-panel-master/backend/data/database.db
-cp -r /www/wwwroot/x-panel-master/backend/default/assets /www/wwwroot/x-panel-master/backend/react_app/assets
-cp -r /www/wwwroot/x-panel-master/backend/default/img /www/wwwroot/x-panel-master/backend/react_app/img
+cp -r /www/wwwroot/x-panel-master/backend/default/assets /www/wwwroot/x-panel-master/backend/react_app
+cp -r /www/wwwroot/x-panel-master/backend/default/img /www/wwwroot/x-panel-master/backend/react_app
 
 echo "Files and directories have been deleted and copied successfully."
