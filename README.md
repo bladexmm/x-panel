@@ -12,13 +12,14 @@
 * 系统壁纸：自动识别文件夹下壁纸，支持MP4作为壁纸
 * 数据备份：备份/恢复所有数据
 * 系统应用：自动识别系统已经安装的应用
-## 项目预览
 
-[在线演示版🔗](http://preview.xblade.tech/)
-
+## 在线演示
 * 演示版每天数据会重置
 * 无法执行部分脚本节点
+* [http://preview.xblade.tech/](http://preview.xblade.tech/)
 
+
+## 项目预览
 ![首页](./static/imgs/all_tiny.png)
 
 
