@@ -141,6 +141,7 @@ class OpenResource(Resource):
         data = dg.getStatus()
         if data == False:
             return result(0, '正在执行中', 'opened')
+        logs = []
         try:
             logs = dg.execute()
         except BaseException as e:

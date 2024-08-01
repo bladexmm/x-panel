@@ -92,6 +92,7 @@ def openApp():
         app_dict['path'] = json.loads(app_dict['path'])
         dg = LiteGraph(app_dict, parent, {"type": "CMDStart", "slot": "out"})
         data = dg.getStatus()
+        logs = []
         if data == False:
             return result(0, '正在执行中', 'opened')
         try:

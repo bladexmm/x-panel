@@ -43,12 +43,12 @@ class CMDResource(Resource):
         data = dg.getStatus()
         if data == False:
             return result(0, '正在执行中', 'opened')
-        logs = dg.execute()
-
-        # try:
-        #     logs = dg.execute()
-        # except BaseException as e:
-        #     Logger.info(f"Node Error:{e}")
+        # logs = dg.execute()
+        logs = []
+        try:
+            logs = dg.execute()
+        except BaseException as e:
+            Logger.info(f"Node Error:{e}")
         dg.initStatus('执行完成','exit')
         return result(1, logs, 'success')
 
