@@ -60,7 +60,7 @@ function Hotkeys() {
     const keyboard_preview = document.querySelector('.virtual-keys-input');
     const keyboard = document.querySelector('.virtual-keyboard');
 
-    this.addWidget("button", "2", null, function () {
+    this.addWidget("button", "打开虚拟键盘", null, function () {
         keyboard.classList.remove('hidden');
         keyboard_preview.innerHTML = findKeyLabel(JSON.parse(self.properties.value));
         virtual_keyboard_id = self.id
