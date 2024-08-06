@@ -51,5 +51,5 @@ const nodes = [
 ]
 
 const NODE_TYPES = [
-    'text','array','location','response'
+    'text','array','location','response','image'
 ]
