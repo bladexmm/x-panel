@@ -10,9 +10,12 @@ import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import {useSnackbar} from "../../SnackbarUtil/SnackbarUtil";
+import {LocationOn} from "@mui/icons-material";
+import CachedIcon from '@mui/icons-material/Cached';
 
 export default function Plugin({defaultLayout}) {
     const {showMessage} = useSnackbar();
+    const [refreshBtn, setRefreshBtn] = React.useState(false);
     const [installedApps, setInstalledApps] = React.useState([]);
     const [filteredApps, setFilterApps] = React.useState([]);
     const fetch_installed_apps = () => {
@@ -23,6 +26,22 @@ export default function Plugin({defaultLayout}) {
         }).then((data) => {
             setInstalledApps(data.data)
             setFilterApps(data.data)
+        });
+    }
+
+
+    const refreshApps = () => {
+        setRefreshBtn(true)
+        setInstalledApps([])
+        setFilterApps([])
+        request({
+            url: "/api/tools/apps",
+            method: "GET",
+            headers: {"Content-Type": "application/json"},
+        }).then((data) => {
+            setInstalledApps(data.data)
+            setFilterApps(data.data)
+            setRefreshBtn(false)
         });
     }
 
@@ -57,12 +76,19 @@ export default function Plugin({defaultLayout}) {
     return (
         <Grid container direction="row" spacing={2}
               columns={{xs: 1}}>
+
+            {/*搜索栏*/}
             <Grid xs={1}>
                 <Input
                     placeholder="搜索" color="neutral" variant="soft"
+                    endDecorator={
+                        <Button variant="soft"  startDecorator={<CachedIcon />} sx={{
+                            borderRadius: ".3rem",
+                        }} onClick={refreshApps} loading={refreshBtn}>刷新</Button>
+                    }
                     sx={{
                         '--Input-radius': '0px',
-                        borderRadius: "1rem",
+                        borderRadius: ".3rem",
                         width: "100%",
                         margin: "auto",
                         '--Input-focusedInset': 'var(--any, )',
@@ -88,6 +114,8 @@ export default function Plugin({defaultLayout}) {
                     }}
                 />
             </Grid>
+
+            {/* 应用列表 */}
             <Grid xs={1} container direction="row" columns={{xs: 1, sm: 2, md: 3, lg: 5}} spacing={2}>
                 {filteredApps.map((app, i) => (
                     <Grid xs={1} sm={1} md={1} lg={1}

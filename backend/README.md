@@ -2,6 +2,10 @@
 ## 项目软件版本
 python: 3.10.4
 ## 项目打包
+
+### pyinstaller 打包命令
+
+### nuitka 打包命令
 ```shell
 nuitka --standalone `
   --windows-company-name=bladexmm `

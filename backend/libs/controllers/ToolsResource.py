@@ -10,15 +10,16 @@ from libs.model.models import db
 from libs.service import generate_video, getWallpapers, uploadFile
 from libs.utils import system
 from libs.utils.LiteGraph import LiteGraph
+from libs.utils.installedApps import init_windows_apps, windows_apps_all
 from libs.utils.log import Logger
 from libs.utils.settings import STATUS_PATH
+from libs.utils.system import clearStatus
 from libs.utils.tools import read_json, result, copy, zipFolder, format_date, delete_folder, unzip_file, copy_dir, \
     copy_app_images, list_to_dict, generate_random_filename
 from flask import Response, request
 
 from libs.utils.website import md5
 from glob import glob
-
 
 
 class ToolsResource(Resource):
@@ -35,7 +36,7 @@ class CMDResource(Resource):
         cmd = request.form.get('cmd', '{}')
         cmd = json.loads(cmd)
         app = {
-            'id': 'debug',
+            'id'  : 'debug',
             'name': '调试脚本',
             'path': cmd
         }
@@ -49,7 +50,7 @@ class CMDResource(Resource):
             logs = dg.execute()
         except BaseException as e:
             Logger.info(f"Node Error:{e}")
-        dg.initStatus('执行完成','exit')
+        dg.initStatus('执行完成', 'exit')
         return result(1, logs, 'success')
 
 
@@ -90,19 +91,54 @@ class ScriptResource(Resource):
 
 class BackupResource(Resource):
     def get(self):
+        """
+        执行数据库备份和应用程序图片复制，并创建一个压缩存档文件。
+
+        此函数完成以下任务：
+        1. 从数据库中查询所有应用（Apps）并将其转换为字典形式。
+        2. 复制所有应用的图片文件。
+        3. 复制数据库文件以确保备份数据的完整性。
+        4. 将指定文件夹下的内容压缩为ZIP文件，以方便存储或传输。
+        5. 删除临时文件夹以清理空间并保持环境整洁。
+        """
+        # 创建一个数据库会话
         db_session = db.session
+        
+        # 查询所有Apps实体
         apps = db_session.query(Apps).all()
+        
+        # 将查询到的Apps实体转换为字典形式的列表
         apps = [app.to_dict() for app in apps]
-        copy_app_images(apps)  # 复制图片
-        copy('./data/database.db', './temp/database.db')  # 复制数据库
+        
+        # 复制图片
+        copy_app_images(apps)
+        
+        # 复制数据库文件到备份位置
+        copy('./data/database.db', './temp/database.db')
+        
+        # 定义备份文件的路径和名称
         zipFile = f"/backup/backup_{format_date()}.zip"
-        zipFolder('./temp/', f'./react_app{zipFile}')  # 压缩文件
-        delete_folder('./temp')  # 删除文件
+        
+        # 压缩指定文件夹下的内容到ZIP文件
+        zipFolder('./temp/', f'./react_app{zipFile}')
+        
+        # 删除临时文件夹及其内容
+        delete_folder('./temp')
+        
+        # 返回备份结果信息
         return result(data = zipFile, msg = '备份成功')
 
     def delete(self):
-        delete_folder('./react_app/backup')  # 删除文件
-        return result(data = "", msg = '清空完成')
+        """
+        删除备份文件夹中的所有内容，并返回删除结果的信息。
+        
+        该方法用于清空特定备份文件夹中的所有数据，主要用于数据清理或准备阶段，
+        确保备份目录是空的，以便进行新的备份或初始化环境。
+        
+        :return: 返回一个包含结果信息的字典，data键为空字符串，msg键为清空完成的信息。
+        """
+        delete_folder('./react_app/backup')  # 调用delete_folder函数来删除'react_app/backup'文件夹中的所有内容
+        return result(data = "", msg = '清空完成')  # 返回结果，表示清空操作已经完成
 
     def put(self):
         zip_file = uploadFile('backup/', 'other')
@@ -115,7 +151,26 @@ class BackupResource(Resource):
 
 class TestResource(Resource):
     def get(self):
-        return result(data=time.time(),msg="success")
+        """
+        获取当前时间并返回一个结果对象
+
+        返回:
+            result对象: 包含当前时间的数据和一个表示成功的消息
+        """
+        return result(data = time.time(), msg = "success")
+
+
+class ImportAppsResource(Resource):
+
+    """
+    导入系统已经安装的应用
+    """
+    def get(self):
+        init_windows_apps()
+        clearStatus()
+        windows_apps = windows_apps_all()
+        return result(data = windows_apps, msg = "success")
+
 
 class ImportResource(Resource):
     def put(self):
@@ -175,28 +230,28 @@ class ImportResource(Resource):
         return result(data = files, msg = "导入成功")
 
 
-
 class ControlCenterResource(Resource):
     def get(self):
         def generate():
             while True:
                 data = {
-                    "apps": [],
+                    "apps"  : [],
                     "system": {
-                        "volume":system.volume()
+                        "volume": system.volume()
                     }
                 }
                 files = glob(f'{STATUS_PATH}*')
                 running = []
                 apps = []
                 for file in files:
-                    app  = read_json(file)
+                    app = read_json(file)
                     if app['status'] == 'running':
                         running.append(app)
                     else:
                         apps.append(app)
-                
+
                 data['apps'] = running + apps
-                yield f"data: {json.dumps(data, ensure_ascii=False)} \n\n"
+                yield f"data: {json.dumps(data, ensure_ascii = False)} \n\n"
                 time.sleep(1)
-        return  Response(generate(), mimetype="text/event-stream")
+
+        return Response(generate(), mimetype = "text/event-stream")

@@ -1,8 +1,9 @@
 from libs.controllers.AppsResource import AppsResource, OpenResource, FetchResource, ShareResource, StopApp
 from libs.controllers.IconResource import IconResource
 from libs.controllers.LayoutsResource import LayoutsResource, SaveResource
-from libs.controllers.ToolsResource import CMDResource, ControlCenterResource, StreamResource, TestResource, WallpaperResource, UploadResource, \
-    ScriptResource, BackupResource, ImportResource
+from libs.controllers.ToolsResource import CMDResource, ControlCenterResource, StreamResource, TestResource, \
+    WallpaperResource, UploadResource, \
+    ScriptResource, BackupResource, ImportResource, ImportAppsResource
 from libs.utils.system import clearApps, setVolume
 
 resources = (
@@ -13,6 +14,7 @@ resources = (
     (ImportResource, '/api/tools/import'),
     (TestResource, '/api/tools/test'),
     (ControlCenterResource, '/api/tools/control'),
+    (ImportAppsResource, '/api/tools/apps'),
 
     (UploadResource, '/api/upload/image'),
     (ScriptResource, '/api/upload/script'),
