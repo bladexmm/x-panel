@@ -111,14 +111,14 @@ def add_reg():
     create_registry_key(r"*\shell\Upload to xblade", "", value = "Icon",
                         value_data = rf"{project_path}\{filename}.exe")
     create_registry_key(r"*\shell\Upload to xblade\command", "", value = "",
-                        value_data = rf'cmd /c start http://localhost:{port}/?addAppOpen=1^&path="%1"')
+                        value_data = rf'{project_path}\tools.exe --add "%1"')
 
     # 新增到文件夹的右键菜单
     create_registry_key(r"Directory\shell", "Upload to xblade", value = "", value_data = "添加到X-BLADE面板")
     create_registry_key(r"Directory\shell\Upload to xblade", "", value = "Icon",
                         value_data = rf"{project_path}\{filename}.exe")
     create_registry_key(r"Directory\shell\Upload to xblade", "command", value = "",
-                        value_data = rf'cmd /c start http://localhost:{port}/?addAppOpen=1^&path="%1"')
+                        value_data = rf'{project_path}\tools.exe --add "%1"')
 
     # 新增到空白地方的右键菜单
     create_registry_key(r"Directory\Background\shell", "Upload to xblade", value = "",
@@ -126,7 +126,7 @@ def add_reg():
     create_registry_key(r"Directory\Background\shell\Upload to xblade", "", value = "Icon",
                         value_data = rf"{project_path}\{filename}.exe")
     create_registry_key(r"Directory\Background\shell\Upload to xblade", "command", value = "",
-                        value_data = rf'cmd /c start http://localhost:{port}/?addAppOpen=1^&path="%1"')
+                        value_data = rf'{project_path}\tools.exe --add "%1"')
 
 
 def remove_reg():

@@ -5,6 +5,9 @@ python: 3.10.4
 
 ### pyinstaller 打包命令
 
+
+
+
 ### nuitka 打包命令
 ```shell
 nuitka --standalone `

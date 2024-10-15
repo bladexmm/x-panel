@@ -4,7 +4,7 @@ import time
 
 from flask_restful import Api
 from flask_cors import CORS
-from flask_socketio import SocketIO, emit,send
+from flask_socketio import SocketIO, emit, send
 from flask import Flask, request, send_from_directory
 
 import pystray
@@ -20,6 +20,7 @@ from libs.utils.installedApps import init_windows_apps
 from libs.utils.system import clearStatus
 from libs.utils.tools import allowed_file, get_local_ip, default_port, resize_image
 
+# 初始化Flask
 app = Flask(__name__, static_folder = 'react_app/')
 api = Api(app)
 data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
@@ -38,7 +39,9 @@ def test_connect():
     emit('test-msg',
          {'data': 'Print this out via data.data in your client'})
 
-@app.route('/', defaults={'path': ''})
+
+# 静态文件访问控制
+@app.route('/', defaults = {'path': ''})
 @app.route('/<path:path>')
 def serve(path):
     if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
@@ -55,11 +58,11 @@ def serve(path):
                         image_data = f.read()
                     resized_image = resize_image(image_data, (width, height))
                     return resized_image, 200, {'Content-Type': 'image/jpeg'}
-                
+
                 # MP4处理（这里可以添加视频缩放/转换逻辑）
                 elif path.endswith('mp4'):
                     pass  # 这里需要一个视频处理函数
-                    
+
         return send_from_directory(app.static_folder, path)
     return send_from_directory(app.static_folder, 'index.html')
 
@@ -69,21 +72,18 @@ def system_config(info):
     return systemInfo(info)
 
 
+# 加载url资源
 for resource, route in router.resources:
     api.add_resource(resource, route)
 
+# 加载websocket资源
 for event, handler in router.event_handlers:
     socket.on_event(event, handler)
 
+# 创建默认数据表
 with app.app_context():
     db.create_all()
-    # init_windows_apps()
 
-
-def init_app():
-    with app.app_context():
-        init_windows_apps()
-        clearStatus()
 
 def windows():
     host = get_local_ip()
@@ -113,7 +113,6 @@ def windows():
     icon = pystray.Icon("data/blade.ico", image, "XBlade", menu)
     icon.menu = menu
     flask_App = threading.Thread(target = run_flask, daemon = True)
-    threading.Thread(target = init_app, daemon = True).start()
     flask_App.start()
     open_panel()
     icon.run()

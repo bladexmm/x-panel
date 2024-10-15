@@ -148,7 +148,8 @@ def open_with_default_program(file_path):
     try:
         if system == "Windows":
             if file_type == "file":
-                subprocess.Popen([file_path], shell = True)
+                # subprocess.Popen(['powershell', '-Command', f'Start-Process "{file_path}" -Verb RunAs'], shell=True)
+                subprocess.Popen([file_path], shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
             elif file_type == "dir":
                 os.system(f"start {file_path}")
             else:
