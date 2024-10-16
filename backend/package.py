@@ -280,5 +280,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # main()
-    build_tools_pack()
+    main()
