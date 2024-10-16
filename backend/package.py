@@ -12,6 +12,27 @@ dist_folder = "./releases/build/main.dist"
 venv_path = './venv'  # 假设你的虚拟环境在当前目录下的 venv 文件夹
 python_executable = os.path.join(venv_path, 'Scripts', 'python.exe')  # Windows
 
+import os
+import shutil
+
+
+def move_tools_to_destination(source_file, destination_folder):
+    # 确保目标文件夹存在
+    os.makedirs(destination_folder, exist_ok = True)
+
+    # 构造目标文件路径
+    destination_file = os.path.join(destination_folder, os.path.basename(source_file))
+
+    # 如果目标文件已存在，先删除它
+    if os.path.exists(destination_file):
+        os.remove(destination_file)
+
+    # 移动文件
+    shutil.move(source_file, destination_file)  # move 会将文件移动到目标位置
+    print(f"文件 {source_file} 已移动到 {destination_file}")
+
+
+
 
 def clear_apps():
     # 数据库文件路径
@@ -100,27 +121,11 @@ def clear_full_pack():
     print("清理完成")
 
 
-def build_package():
+def build_package(command, filename):
     """
     执行 Nuitka 打包命令
     """
-    command = [
-        'nuitka', '--standalone',
-        '--windows-company-name=bladexmm',
-        '--windows-file-version=' + SOFTWARE_VERSION,
-        '--windows-product-name=XBLADE-PANEL',
-        '--include-data-dir=data=data',
-        '--include-data-dir=react_app=react_app',
-        '--windows-icon-from-ico=data/blade.ico',
-        '--windows-uac-admin',
-        '--nofollow-imports',
-        '--disable-console',
-        '--jobs=4',
-        '--include-package=flask',
-        '--include-module=win32com',
-        '-o', 'XBLADE',
-        'main.py'
-    ]
+    onefile = True if '--onefile' in command else False
 
     command = ' '.join(command)
 
@@ -131,39 +136,98 @@ def build_package():
         # 使用 start 命令打开新的命令提示符窗口并执行命令
         subprocess.run(['cmd', '/c', 'start', '/wait', 'cmd', '/c', command], shell = True)
         print("打包完成")
-        # 移动打包后的文件到 ./releases
-        releases_dir = './releases'
-        if not os.path.exists(releases_dir):
-            os.makedirs(releases_dir)
 
         releases_dir = './releases/build'
         if not os.path.exists(releases_dir):
             os.makedirs(releases_dir)
 
         # 移动 main.build 和 main.dist
-        build_folder = 'main.build'
-        dist_folder = 'main.dist'
+        build_folder = f'{filename}.build'
+        dist_folder = f'{filename}.dist'
+        onefile_folder = f'{filename}.onefile-build'
 
         if os.path.exists(build_folder):
-            shutil.move(build_folder, os.path.join(releases_dir, build_folder))
+            destination = os.path.join(releases_dir, build_folder)
+            if os.path.exists(destination):
+                shutil.rmtree(destination)  # 删除整个目录及其内容
+
+            shutil.move(build_folder, releases_dir)
             print(f"Moved {build_folder} to {releases_dir}")
 
         if os.path.exists(dist_folder):
-            shutil.move(dist_folder, os.path.join(releases_dir, dist_folder))
+            destination = os.path.join(releases_dir, dist_folder)
+            if os.path.exists(destination):
+                shutil.rmtree(destination)  # 删除整个目录及其内容
+
+            shutil.move(dist_folder, releases_dir)
             print(f"Moved {dist_folder} to {releases_dir}")
+
+        if not onefile:
+            return
+
+        if os.path.exists(onefile_folder):
+            destination = os.path.join(releases_dir, onefile_folder)
+            if os.path.exists(destination):
+                shutil.rmtree(destination)  # 删除整个目录及其内容
+
+            shutil.move(onefile_folder, os.path.join(releases_dir, onefile_folder))
+            print(f"Moved {onefile_folder} to {releases_dir}")
     except subprocess.CalledProcessError as e:
         print(f"打包失败: {e}")
 
 
+def build_tools_pack():
+    command = [
+        'nuitka', '--standalone', '--onefile',
+        '--windows-company-name=bladexmm',
+        '--windows-file-version=' + SOFTWARE_VERSION,
+        '--windows-product-name=XBLADE-PANEL',
+        '--windows-icon-from-ico=data/tools.ico',
+        '--nofollow-imports',
+        '--windows-console-mode=disable',
+        '--jobs=4',
+        '-o', 'tools',
+        'tools.py'
+    ]
+    build_package(command, 'tools')
+    # 使用示例
+    source_file = "./tools.exe"  # 替换为实际的源文件路径
+    destination_folder = "releases/build/main.dist"
+
+    move_tools_to_destination(source_file, destination_folder)
+
+
+def build_main_package():
+    command = [
+        'nuitka', '--standalone',
+        '--windows-company-name=bladexmm',
+        '--windows-file-version=' + SOFTWARE_VERSION,
+        '--windows-product-name=XBLADE-PANEL',
+        '--include-data-dir=data=data',
+        '--include-data-dir=react_app=react_app',
+        '--windows-icon-from-ico=data/blade.ico',
+        '--windows-uac-admin',
+        '--nofollow-imports',
+        '--windows-console-mode=disable',
+        '--jobs=4',
+        '--include-package=flask',
+        '--include-module=win32com',
+        '-o', 'XBLADE',
+        'main.py'
+    ]
+    build_package(command, 'main')
+    build_tools_pack()
+
+
 def nsis_pack(filename):
     command = [
-        'makensis', './default/nsis/xblade.nsi',
+        'makensis', f"/DSoftwareVersion=V{SOFTWARE_VERSION}", './default/nsis/xblade.nsi'
     ]
 
     command = ' '.join(command)
 
     try:
-        command += '& timeout /t 5 & exit'
+        command += ' & timeout /t 5 & exit'
         print(command)
         # 使用 start 命令打开新的命令提示符窗口并执行命令
         subprocess.run(['cmd', '/c', 'start', '/wait', 'cmd', '/c', command], shell = True)
@@ -199,7 +263,7 @@ def main():
 
         elif choice == '1':
             print("开始打包软件")
-            build_package()
+            build_main_package()
             print("主程序打包完成")
 
         elif choice == '2':
@@ -216,4 +280,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    build_tools_pack()
