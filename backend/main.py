@@ -1,7 +1,4 @@
-import io
 import os
-import time
-
 from flask_restful import Api
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit, send
@@ -16,8 +13,7 @@ from pystray import MenuItem, Menu
 from libs import router
 from libs.model.models import db
 from libs.service import systemInfo
-from libs.utils.installedApps import init_windows_apps
-from libs.utils.system import clearStatus
+from libs.utils.reg import is_registry_startup, switch_startup_registry
 from libs.utils.tools import allowed_file, get_local_ip, default_port, resize_image
 
 # 初始化Flask
@@ -105,6 +101,7 @@ def windows():
 
     menu = (
         MenuItem('打开面板', open_panel, default = True),
+        MenuItem('开机启动', switch_startup_registry, checked = is_registry_startup),
         Menu.SEPARATOR,
         MenuItem('退出软件', quit_window),
     )

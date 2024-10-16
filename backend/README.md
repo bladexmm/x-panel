@@ -12,7 +12,7 @@ python: 3.10.4
 ```shell
 nuitka --standalone `
   --windows-company-name=bladexmm `
-  --windows-file-version=2.1.2 `
+  --windows-file-version=2.2.0 `
   --windows-product-name=XBLADE-PANEL `
   --include-data-dir=data=data `
   --include-data-dir=react_app=react_app `

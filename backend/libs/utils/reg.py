@@ -91,11 +91,40 @@ def create_registry_key(key_path, key_name, value = None, value_data = None, reg
         print(f"Error creating registry key {key_name}: {e}")
 
 
+def is_registry_startup(params):
+    # 定义要检查的注册表路径和键名
+    registry_path = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Run'
+    key_name = 'XbladePanel'
+
+    try:
+        # 打开注册表项
+        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, registry_path) as key:
+            try:
+                # 尝试读取指定键名的值
+                value = winreg.QueryValueEx(key, key_name)
+                print(f"找到注册表项: {key_name}，值为: {value[0]}")
+                return True
+            except FileNotFoundError:
+                # 如果键不存在
+                print(f"未找到注册表项: {key_name}")
+                return False
+    except PermissionError:
+        print("权限错误: 请以管理员身份运行此脚本")
+        return False
+
+
+def switch_startup_registry():
+    if is_registry_startup([]):
+        remove_auto_start_key()
+    else:
+        registry_auto_start_key()
+
+
 def registry_auto_start_key():
     project_path = get_project_path()
     filename = exe_name()
     create_registry_key(r"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "", value = "XbladePanel",
-                        value_data = rf"\"{project_path}\{filename}.exe\"  --cmd=autorun", reg_key = winreg.HKEY_LOCAL_MACHINE)
+                        value_data = rf"{project_path}\tools.exe --run startup", reg_key = winreg.HKEY_LOCAL_MACHINE)
 
 
 def remove_auto_start_key():
