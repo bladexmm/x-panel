@@ -2,11 +2,8 @@
 ## 项目软件版本
 python: 3.10.4
 ## 项目打包
-
-### pyinstaller 打包命令
-
-
-
+* nuitka 打包exe
+* nsis 生成安装包(需要将软件添加到环境变量中)
 
 ### nuitka 打包命令
 ```shell

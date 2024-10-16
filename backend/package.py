@@ -155,10 +155,37 @@ def build_package():
         print(f"打包失败: {e}")
 
 
+def nsis_pack(filename):
+    command = [
+        'makensis', './default/nsis/xblade.nsi',
+    ]
+
+    command = ' '.join(command)
+
+    try:
+        command += '& timeout /t 5 & exit'
+        print(command)
+        # 使用 start 命令打开新的命令提示符窗口并执行命令
+        subprocess.run(['cmd', '/c', 'start', '/wait', 'cmd', '/c', command], shell = True)
+        print("打包完成")
+        source_file = 'default/nsis/Setup.exe'
+        target_dir = f'./releases/v{SOFTWARE_VERSION.replace(".", "_")}'
+        target_file = os.path.join(target_dir, f'{filename}.exe')
+        if os.path.exists(source_file):
+            # 创建目标目录（如果不存在）
+            os.makedirs(target_dir, exist_ok = True)
+
+            # 移动并重命名文件，如果目标文件已存在则覆盖
+            shutil.move(source_file, target_file)
+            print(f"文件已移动并重命名为: {target_file}")
+
+    except subprocess.CalledProcessError as e:
+        print(f"打包失败: {e}")
+
+
 def main():
     while True:
-        # print("Enter the number of the function you want to execute:\n")
-        options = ['clear data to full pack', 'clear data to tiny pack']
+        options = ['nuitka package xblade', 'nsis setup pack', 'nsis update pack']
         for i in range(1, len(options) + 1):
             print(f"{i}. {options[i - 1]}")
 
@@ -169,14 +196,23 @@ def main():
         if choice == '0':
             print("Exiting...")
             exit()
+
         elif choice == '1':
             print("开始打包软件")
             build_package()
-            print('开始清理完整打包多余数据')
-            clear_full_pack()
+            print("主程序打包完成")
+
         elif choice == '2':
-            print('开始清理数据精简打包')
+            print("开始清理数据")
+            clear_full_pack()
+            nsis_pack('setup')
+            print("安装包打包完成")
+
+        elif choice == '3':
+            print("开始清理数据")
             clear_tiny_pack()
+            nsis_pack('update')
+            print("更新包打包完成")
 
 
 if __name__ == "__main__":
