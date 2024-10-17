@@ -98,7 +98,7 @@ def is_registry_startup(params):
 
     try:
         # 打开注册表项
-        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, registry_path) as key:
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, registry_path) as key:
             try:
                 # 尝试读取指定键名的值
                 value = winreg.QueryValueEx(key, key_name)
@@ -124,11 +124,11 @@ def registry_auto_start_key():
     project_path = get_project_path()
     filename = exe_name()
     create_registry_key(r"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "", value = "XbladePanel",
-                        value_data = rf"{project_path}\tools.exe --run startup", reg_key = winreg.HKEY_LOCAL_MACHINE)
+                        value_data = rf'"{project_path}\tools.exe" --run startup', reg_key = winreg.HKEY_CURRENT_USER)
 
 
 def remove_auto_start_key():
-    delete_register_key(r"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "XbladePanel", winreg.HKEY_LOCAL_MACHINE)
+    delete_register_key(r"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "XbladePanel", winreg.HKEY_CURRENT_USER)
 
 
 def add_reg():
@@ -139,15 +139,15 @@ def add_reg():
     create_registry_key(r"*\shell", "Upload to xblade", value = "", value_data = "添加到X-BLADE面板")
     create_registry_key(r"*\shell\Upload to xblade", "", value = "Icon",
                         value_data = rf"{project_path}\{filename}.exe")
-    create_registry_key(r"*\shell\Upload to xblade\command", "", value = "",
-                        value_data = rf'{project_path}\tools.exe --add "%1"')
+    create_registry_key(r"*\shell\Upload to xblade", "command", value = "",
+                        value_data = rf'"{project_path}\tools.exe" --add "%1"')
 
     # 新增到文件夹的右键菜单
     create_registry_key(r"Directory\shell", "Upload to xblade", value = "", value_data = "添加到X-BLADE面板")
     create_registry_key(r"Directory\shell\Upload to xblade", "", value = "Icon",
                         value_data = rf"{project_path}\{filename}.exe")
     create_registry_key(r"Directory\shell\Upload to xblade", "command", value = "",
-                        value_data = rf'{project_path}\tools.exe --add "%1"')
+                        value_data = rf'"{project_path}\tools.exe" --add "%1"')
 
     # 新增到空白地方的右键菜单
     create_registry_key(r"Directory\Background\shell", "Upload to xblade", value = "",
@@ -155,7 +155,7 @@ def add_reg():
     create_registry_key(r"Directory\Background\shell\Upload to xblade", "", value = "Icon",
                         value_data = rf"{project_path}\{filename}.exe")
     create_registry_key(r"Directory\Background\shell\Upload to xblade", "command", value = "",
-                        value_data = rf'{project_path}\tools.exe --add "%1"')
+                        value_data = rf'"{project_path}\tools.exe" --add "%1"')
 
 
 def remove_reg():
