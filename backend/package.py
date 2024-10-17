@@ -32,8 +32,6 @@ def move_tools_to_destination(source_file, destination_folder):
     print(f"文件 {source_file} 已移动到 {destination_file}")
 
 
-
-
 def clear_apps():
     # 数据库文件路径
     db_file_path = dist_folder + '/data/database.db'
@@ -178,7 +176,7 @@ def build_package(command, filename):
 
 def build_tools_pack():
     command = [
-        'nuitka', '--standalone', '--onefile',
+        'nuitka', '--onefile',
         '--windows-company-name=bladexmm',
         '--windows-file-version=' + SOFTWARE_VERSION,
         '--windows-product-name=XBLADE-PANEL',
@@ -217,6 +215,10 @@ def build_main_package():
     ]
     build_package(command, 'main')
     build_tools_pack()
+    command = [
+        "nuitka", "--onefile", "--windows-disable-console", "client_launcher.py"
+    ]
+    build_package(command, 'client_launcher')
 
 
 def nsis_pack(filename):

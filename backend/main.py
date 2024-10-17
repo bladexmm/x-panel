@@ -111,9 +111,8 @@ def windows():
     icon.menu = menu
     flask_App = threading.Thread(target = run_flask, daemon = True)
     flask_App.start()
-    threading.Thread(target=open_panel()).start()
-    threading.Thread(target=icon.run()).start()
-
+    threading.Thread(target = open_panel()).start()
+    threading.Thread(target = icon.run()).start()
 
 
 if __name__ == "__main__":
