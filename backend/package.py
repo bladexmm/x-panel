@@ -219,6 +219,11 @@ def build_main_package():
         "nuitka", "--onefile", "--windows-disable-console", "client_launcher.py"
     ]
     build_package(command, 'client_launcher')
+    # 使用示例
+    source_file = "./client_launcher.exe"  # 替换为实际的源文件路径
+    destination_folder = "releases/build/main.dist"
+
+    move_tools_to_destination(source_file, destination_folder)
 
 
 def nsis_pack(filename):
