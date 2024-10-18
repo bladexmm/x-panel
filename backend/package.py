@@ -195,6 +195,21 @@ def build_tools_pack():
     move_tools_to_destination(source_file, destination_folder)
 
 
+def build_launcher_pack():
+    command = [
+        "nuitka", "--onefile",
+        '--windows-icon-from-ico=data/blade.ico',
+        "--windows-disable-console",
+        "client_launcher.py"
+    ]
+    build_package(command, 'client_launcher')
+    # 使用示例
+    source_file = "./client_launcher.exe"  # 替换为实际的源文件路径
+    destination_folder = "releases/build/main.dist"
+
+    move_tools_to_destination(source_file, destination_folder)
+
+
 def build_main_package():
     command = [
         'nuitka', '--standalone',
@@ -215,15 +230,7 @@ def build_main_package():
     ]
     build_package(command, 'main')
     build_tools_pack()
-    command = [
-        "nuitka", "--onefile", "--windows-disable-console", "client_launcher.py"
-    ]
-    build_package(command, 'client_launcher')
-    # 使用示例
-    source_file = "./client_launcher.exe"  # 替换为实际的源文件路径
-    destination_folder = "releases/build/main.dist"
-
-    move_tools_to_destination(source_file, destination_folder)
+    build_launcher_pack()
 
 
 def nsis_pack(filename):

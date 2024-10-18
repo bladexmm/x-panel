@@ -6,7 +6,7 @@ import psutil
 def launch_application():
     try:
         # 启动XBLADE.exe，并使用runas以管理员权限运行
-        process = subprocess.Popen(['runas', '/user:Administrator', 'XBLADE.exe'], shell = True)
+        subprocess.Popen(["XBLADE.exe"], shell = True)
         print("启动 XBLADE.exe ...")
 
         # 监控是否启动成功
