@@ -6,7 +6,7 @@ import sqlite3
 import subprocess
 
 from libs.utils.settings import SOFTWARE_VERSION
-from libs.utils.tools import delete_folder, copy, copy_dir
+from libs.utils.tools import delete_folder, copy, copy_dir, zipFolder
 
 dist_folder = "./releases/build/main.dist"
 venv_path = './venv'  # 假设你的虚拟环境在当前目录下的 venv 文件夹
@@ -199,7 +199,7 @@ def build_launcher_pack():
     command = [
         "nuitka", "--onefile",
         '--windows-icon-from-ico=data/blade.ico',
-        # "--windows-console-mode=disable",
+        "--windows-console-mode=disable",
         "client_launcher.py"
     ]
     build_package(command, 'client_launcher')
@@ -213,6 +213,7 @@ def build_launcher_pack():
 def build_main_package():
     command = [
         'nuitka', '--standalone',
+        '--no-debug','--mingw64',
         '--windows-company-name=bladexmm',
         '--windows-file-version=' + SOFTWARE_VERSION,
         '--windows-product-name=XBLADE-PANEL',
@@ -220,9 +221,9 @@ def build_main_package():
         '--include-data-dir=react_app=react_app',
         '--windows-icon-from-ico=data/blade.ico',
         '--windows-uac-admin',
-        '--nofollow-imports',
-        # '--windows-console-mode=disable',
-        '--jobs=4',
+        '--follow-imports',
+        '--windows-console-mode=disable',
+        '--plugin-enable=upx',
         '--include-package=flask',
         '--include-module=win32com',
         '-o', 'XBLADE',
@@ -284,12 +285,16 @@ def main():
             print("开始清理数据")
             clear_full_pack()
             nsis_pack('setup')
+            target_zip = f'./releases/v{SOFTWARE_VERSION.replace(".", "_")}/setup.zip'
+            zipFolder(r'releases\build\main.dist',target_zip)
             print("安装包打包完成")
 
         elif choice == '3':
             print("开始清理数据")
             clear_tiny_pack()
             nsis_pack('update')
+            target_zip = f'./releases/v{SOFTWARE_VERSION.replace(".", "_")}/update.zip'
+            zipFolder(r'releases\build\main.dist',target_zip)
             print("更新包打包完成")
 
 
