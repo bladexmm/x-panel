@@ -112,7 +112,7 @@ def windows():
     flask_App = threading.Thread(target = run_flask, daemon = True)
     flask_App.start()
     threading.Thread(target = open_panel()).start()
-    threading.Thread(target = icon.run()).start()
+    icon.run()
 
 
 if __name__ == "__main__":

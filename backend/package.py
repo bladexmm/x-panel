@@ -199,7 +199,7 @@ def build_launcher_pack():
     command = [
         "nuitka", "--onefile",
         '--windows-icon-from-ico=data/blade.ico',
-        "--windows-disable-console",
+        # "--windows-console-mode=disable",
         "client_launcher.py"
     ]
     build_package(command, 'client_launcher')
@@ -221,7 +221,7 @@ def build_main_package():
         '--windows-icon-from-ico=data/blade.ico',
         '--windows-uac-admin',
         '--nofollow-imports',
-        '--windows-console-mode=disable',
+        # '--windows-console-mode=disable',
         '--jobs=4',
         '--include-package=flask',
         '--include-module=win32com',
