@@ -14,9 +14,10 @@ def DisplayGrid(node):
             input['value']['id'] = input['name'].split('_')[1]
             nodes.append(input['value'])
     data = {
-        "style" : InitStyle(style),
-        "layout": json.loads(node['properties']['layout']),
-        "nodes" : nodes
+        "style"  : InitStyle(style),
+        "layout" : json.loads(node['properties']['layout']),
+        "nodes"  : nodes,
+        "refresh": node['properties'].get('refresh',0)
     }
     layouts = data['layout']['children']
     for layout in layouts:
@@ -48,7 +49,6 @@ def DisplayGrid(node):
     data['style']['width'] = data['style'].get('width', '100%')
     data['style']['margin'] = data['style'].get('margin', 0)
     data['style']['padding'] = data['style'].get('padding', 0)
-
     return nodeOutput(3, node, 'out', data)
 
 

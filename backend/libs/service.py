@@ -93,7 +93,7 @@ def openApp():
         dg = LiteGraph(app_dict, parent, {"type": "CMDStart", "slot": "out"})
         data = dg.getStatus()
         logs = []
-        if data == False:
+        if not data:
             return result(0, '正在执行中', 'opened')
         try:
             logs = dg.execute()

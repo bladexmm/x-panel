@@ -139,7 +139,7 @@ class OpenResource(Resource):
                 node['value'] = findInputNode[0]['value']
         dg = LiteGraph(app, parent, startNode)
         data = dg.getStatus()
-        if data == False:
+        if not data:
             return result(0, '正在执行中', 'opened')
         logs = []
         try:

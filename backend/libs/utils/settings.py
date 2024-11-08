@@ -23,4 +23,4 @@ STATUS_PATH = './data/status/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4'}
 
 # 最大允许的节点数量
-MAX_NODE_RUN = 1000
+MAX_NODE_RUN = 2000

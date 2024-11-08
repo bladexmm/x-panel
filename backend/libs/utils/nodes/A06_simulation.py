@@ -3,7 +3,7 @@ import json
 import pyautogui
 import pyperclip
 
-from libs.utils.nodes.base import alias, nodeOutput
+from libs.utils.nodes.base import alias, nodeOutput, getInput
 
 
 @alias("模拟/快捷键(Hotkeys)")
@@ -25,7 +25,9 @@ def hotkey(node):
 
 @alias("模拟/文本输入(TypeText)")
 def typewrite(node):
-    pyperclip.copy(node['properties']['value'])
+    value = getInput(node['inputs'], 1)
+    value = value if value else node['properties']['value']
+    pyperclip.copy(value)
     pyautogui.hotkey("ctrl", "v")
     return nodeOutput(1, node, 'out', '')
 

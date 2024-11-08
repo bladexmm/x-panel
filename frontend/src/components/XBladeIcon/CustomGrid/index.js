@@ -13,7 +13,9 @@ import Option from '@mui/joy/Option';
 export default function CustomGrid({id}) {
     const [gridStyle, setGridStyle] = React.useState({});
     const [nodes, setNodes] = React.useState([]);
+    const [refresh, setRefresh] = React.useState(0);
     const host = getUserSettings('settings.host')
+    const intervalRef = React.useRef(null);  // 用来保存定时器 ID
 
 
     function isFullUrl(str) {
@@ -63,18 +65,51 @@ export default function CustomGrid({id}) {
     };
 
     useEffect(() => {
+        // 发起请求
         request({
             url: "/api/apps/open?id=" + id,
             method: "GET",
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
             body: {},
         }).then((data) => {
             if (data.data != null) {
                 setGridStyle(data.data.style);
                 setNodes(data.data.nodes != null ? data.data.nodes : []);
+                setRefresh(data.data.refresh);
+                console.log(data.data.refresh);
+
+                // 判断 refresh 是否不为 0，开始定时请求
+                if (data.data.refresh !== 0) {
+                    // 清除之前的定时器（如果有）
+                    if (intervalRef.current) {
+                        clearInterval(intervalRef.current);
+                    }
+
+                    // 设置新的定时器
+                    intervalRef.current = setInterval(() => {
+                        request({
+                            url: "/api/apps/open?id=" + id,
+                            method: "GET",
+                            headers: { "Content-Type": "application/json" },
+                            body: {},
+                        }).then((data) => {
+                            if (data.data != null) {
+                                setGridStyle(data.data.style);
+                                setNodes(data.data.nodes != null ? data.data.nodes : []);
+                            }
+                        });
+                    }, data.data.refresh * 1000); // 刷新时间间隔，单位为秒，转为毫秒
+                }
             }
         });
-    }, [id])
+
+        // 清理定时器，当组件卸载或 id 发生变化时
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, [id]);
 
 
     return (

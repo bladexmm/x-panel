@@ -132,11 +132,11 @@ Hotkeys.desc = "同时按下多个按键";
 
 function Type_Text() {
     this.addInput("in", "cmd");
+    this.addInput("cmd", "text");
     this.addOutput("out", "cmd");
     this.addProperty("value", "");
     this.widget = this.addWidget("text", "value", "", "value");  //link to property value
-    this.widgets_up = true;
-    this.size = [180, 30];
+    this.size = [180, 80];
 }
 
 Type_Text.title = "文本输入";

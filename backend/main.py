@@ -14,7 +14,7 @@ from libs import router
 from libs.model.models import db
 from libs.service import systemInfo
 from libs.utils.reg import is_registry_startup, switch_startup_registry
-from libs.utils.tools import allowed_file, get_local_ip, default_port, resize_image
+from libs.utils.tools import allowed_file, get_local_ip, default_port, resize_image, delete_files
 
 # 初始化Flask
 app = Flask(__name__, static_folder = 'react_app/')
@@ -91,6 +91,7 @@ def windows():
 
     def open_panel():
         webbrowser.open(f'http://{host}:{port}')
+        delete_files('data/status')
 
     def run_flask():
         try:
@@ -99,11 +100,11 @@ def windows():
         except Exception as e:
             print(f"Flask app failed to start: {e}")
 
-    menu = (
+    menu = Menu(
         MenuItem('打开面板', open_panel, default = True),
         MenuItem('开机启动', switch_startup_registry, checked = is_registry_startup),
         Menu.SEPARATOR,
-        MenuItem('退出软件', quit_window),
+        MenuItem('退出软件', quit_window)
     )
     # 继续使用系统托盘图标
     image = Image.open("data/blade.png")

@@ -13,6 +13,8 @@ function DisplayGrid() {
     this.desc = "编辑布局";
     this.addInput("in", "cmd")
     this.addInput("style", "text")
+    this.addProperty("refresh", 0);
+    this.widget = this.addWidget("number", "w", this.properties.refresh, "refresh");
 
     this.addProperty("layout", '{"column":3,"cellHeight":80,"float":true,"margin":0,"acceptWidgets":true,"removable":"#grid-app-trash","maxRow":3,"minRow":3,"children":[]}');
     const keyboard = document.querySelector('.display-grid-edit');
@@ -53,7 +55,7 @@ function DisplayGrid() {
         });
     });
 
-    this.size = [90, 70];
+    this.size = [120, 100];
 }
 
 DisplayGrid.title = "显示布局";

@@ -149,7 +149,8 @@ def open_with_default_program(file_path):
         if system == "Windows":
             if file_type == "file":
                 # subprocess.Popen(['powershell', '-Command', f'Start-Process "{file_path}" -Verb RunAs'], shell=True)
-                subprocess.Popen([file_path], shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                subprocess.Popen([file_path], shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE,
+                                 stdin = subprocess.PIPE)
             elif file_type == "dir":
                 os.system(f"start {file_path}")
             else:
@@ -228,6 +229,16 @@ def delete_folder(temp_folder):
                 shutil.rmtree(file_path)
         except Exception as e:
             print(f"can not delete: {file_path}: {e}")
+
+
+def delete_files(directory):
+    # 获取目录下所有文件
+    for filename in os.listdir(directory):
+        file_path = os.path.join(directory, filename)
+
+        # 确保是文件而非目录
+        if os.path.isfile(file_path):
+            os.remove(file_path)
 
 
 def format_date(format = "%Y-%m-%d_%H-%M-%S"):

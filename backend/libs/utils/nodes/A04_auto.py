@@ -11,7 +11,7 @@ from libs.utils.nodes.base import alias, nodeOutput, getInput
 @alias("自动化/图片定位(LocateOnScreenNode)")
 def LocateOnScreenNode(node):
     # 判断是否有外部图片输入
-    if len(node['inputs'][1].get('value', '')) > 0:
+    if getInput(node['inputs'], 1):
         image_path = 'react_app' + node['inputs'][1]['value']
     else:
         image_path = 'react_app' + node['properties']['image']

@@ -1,5 +1,6 @@
 import json
 import time
+from tkinter import NO
 import urllib
 from urllib.parse import urlencode
 
@@ -89,6 +90,16 @@ def GetJson(node):
         flattened_list = [item for sublist in result for item in sublist if item]
         textOutput = ','.join(flattened_list)
     return nodeOutput(1, node, 'out', ['', '', textOutput, ArrayOutput])
+
+
+
+@alias("编程/格式化对象(FormatObj)")
+def FormatObj(node):
+    response = getInput(node['inputs'], 1)
+    array = getInput(node['inputs'], 2)
+    data = {} if response is None else json.loads(response)
+
+    return nodeOutput(1, node, 'out', ['', '', array])
 
 
 @alias("编程/判断(IfValid)")

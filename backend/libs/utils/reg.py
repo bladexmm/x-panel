@@ -112,6 +112,7 @@ def is_registry_startup(params):
         print("权限错误: 请以管理员身份运行此脚本")
         return False
 
+
 def switch_startup_registry():
     if is_registry_startup([]):
         remove_auto_start_key()

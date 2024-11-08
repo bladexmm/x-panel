@@ -12,9 +12,6 @@ dist_folder = "./releases/build/main.dist"
 venv_path = './venv'  # 假设你的虚拟环境在当前目录下的 venv 文件夹
 python_executable = os.path.join(venv_path, 'Scripts', 'python.exe')  # Windows
 
-import os
-import shutil
-
 
 def move_tools_to_destination(source_file, destination_folder):
     # 确保目标文件夹存在
