@@ -210,7 +210,7 @@ def build_launcher_pack():
 def build_main_package():
     command = [
         'nuitka', '--standalone',
-        '--no-debug','--mingw64',
+        '--no-debug', '--mingw64',
         '--windows-company-name=bladexmm',
         '--windows-file-version=' + SOFTWARE_VERSION,
         '--windows-product-name=XBLADE-PANEL',
@@ -283,7 +283,7 @@ def main():
             clear_full_pack()
             nsis_pack('setup')
             target_zip = f'./releases/v{SOFTWARE_VERSION.replace(".", "_")}/setup.zip'
-            zipFolder(r'releases\build\main.dist',target_zip)
+            zipFolder(r'releases\build\main.dist', target_zip)
             print("安装包打包完成")
 
         elif choice == '3':
@@ -291,7 +291,7 @@ def main():
             clear_tiny_pack()
             nsis_pack('update')
             target_zip = f'./releases/v{SOFTWARE_VERSION.replace(".", "_")}/update.zip'
-            zipFolder(r'releases\build\main.dist',target_zip)
+            zipFolder(r'releases\build\main.dist', target_zip)
             print("更新包打包完成")
 
 
