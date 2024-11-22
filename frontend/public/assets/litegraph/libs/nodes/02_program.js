@@ -168,6 +168,24 @@ SwitchValid.prototype.onMouseDown = function (e, localpos, graphcanvas) {
 }
 
 
+function ForLoop() {
+    this.desc = "forLoop";
+    this.addInput("in", "cmd")
+    this.addInput("array", "array")
+    this.addInput("First Index", "text")
+    this.addInput("Last Index", "text")
+
+    this.addOutput("Loop Body", "cmd")
+    this.addOutput("index", "text")
+    this.addOutput("Completed", "cmd")
+
+
+    this.size = [180, 90];
+}
+
+
+ForLoop.title = "循环列表(For)";
+
 function FormatText() {
     this.desc = "格式化字符串";
     this.addInput("in", "cmd")

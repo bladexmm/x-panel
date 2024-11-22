@@ -20,8 +20,14 @@ def alias(name):
 
 
 def nodeOutput(code, node, name = 'cmd', data = None):
-    return {"code": code, "id": node['id'], "type": node['type'], "name": name,
-            "data": data if data is not None else ""}
+    return {
+        "code": code,
+        "node": node,
+        "id": node['id'],
+        "type": node['type'],
+        "name": name,
+        "data": data if data is not None else ""
+    }
 
 
 def getInput(inputs, slot, default = None):

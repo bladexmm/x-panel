@@ -58,6 +58,8 @@ class LiteGraph(object):
 
             if "Subgraph" in nextNode['type']:
                 outputs['nodes'] = nextNode['result']
+            if "node" in outputs:
+                self.nodesDict[nextNode['id']] = outputs['node'] # update node properties
             self.outputs[nextNode['id']] = outputs['data']  # save outputs
             self.logs.append(outputs)  # save logs
             Logger.info(f"Executing LiteGraph Node[{nextNode['id']}] outputs :{outputs}")
@@ -93,6 +95,7 @@ class LiteGraph(object):
         return CMDNode[0]
 
     def getStatus(self):
+        return True
         data = read_json(f'{STATUS_PATH}{self.app["id"]}.json')
         if data is None:
             return True

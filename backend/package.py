@@ -4,6 +4,7 @@ import os
 import shutil
 import sqlite3
 import subprocess
+import time
 
 from libs.utils.settings import SOFTWARE_VERSION
 from libs.utils.tools import delete_folder, copy, copy_dir, zipFolder
@@ -250,7 +251,7 @@ def nsis_pack(filename):
         if os.path.exists(source_file):
             # 创建目标目录（如果不存在）
             os.makedirs(target_dir, exist_ok = True)
-
+            time.sleep(2)
             # 移动并重命名文件，如果目标文件已存在则覆盖
             shutil.move(source_file, target_file)
             print(f"文件已移动并重命名为: {target_file}")

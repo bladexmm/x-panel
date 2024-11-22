@@ -9,6 +9,51 @@ import ctypes
 
 from libs.utils.settings import STATUS_PATH
 from libs.utils.tools import read_json
+import win32gui
+import win32process
+import psutil
+
+import win32gui
+import win32process
+import psutil
+
+
+def getProcesses(process_type: str = "frontend"):
+    """
+    获取进程列表，根据类型返回所有、前台或后台进程。
+
+    :param process_type: 类型 (all, frontend, backend)
+    :return: 满足条件的进程列表
+    """
+    if process_type not in {"all", "frontend", "backend"}:
+        raise ValueError("Invalid type. Choose from 'all', 'frontend', 'backend'.")
+
+    if process_type == "frontend":
+        return _get_frontend_processes()
+
+
+def _get_frontend_processes():
+    """
+    获取前台进程（可见窗口）。
+    """
+    windows_list = []
+    win32gui.EnumWindows(_enum_windows_callback, windows_list)
+    return windows_list
+
+
+def _enum_windows_callback(hwnd, windows_info):
+    """
+    回调函数，用于枚举窗口信息。
+    """
+    if win32gui.IsWindowVisible(hwnd) and win32gui.GetWindowText(hwnd):
+        pid = win32process.GetWindowThreadProcessId(hwnd)[1]  # 获取进程ID
+        title = win32gui.GetWindowText(hwnd)  # 获取窗口标题
+        try:
+            process = psutil.Process(pid)
+            exe_path = process.exe()  # 获取对应的可执行文件路径
+        except (psutil.AccessDenied, psutil.NoSuchProcess):
+            exe_path = "Access Denied or Process Not Found"
+        windows_info.append({"hwnd": hwnd, "pid": pid,"name":process.name(), "title": title, "path": exe_path})
 
 def volume():
     # 初始化 COM

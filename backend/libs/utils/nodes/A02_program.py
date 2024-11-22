@@ -125,6 +125,29 @@ def SwitchValid(node):
 
     return nodeOutput(1, node, 'error', ['', input1])
 
+@alias("编程/循环列表(ForLoop)")
+def ForLoop(node):
+    array = getInput(node['inputs'], 1)
+    if array is None:
+        return nodeOutput(1, node, 'Completed', ['', 1])
+    FirstIdx = getInput(node['inputs'], 2)
+    LastIdx = getInput(node['inputs'], 3)
+    MaxIdx = len(array) - 1
+    if LastIdx is not None:
+        LastIdx = LastIdx if MaxIdx >= int(LastIdx) else MaxIdx
+    else:
+        LastIdx = MaxIdx
+
+    index = node['properties'].get('index', None)
+    if index is None:
+        node['properties']['index'] = 0 if FirstIdx is None else FirstIdx
+        return nodeOutput(1, node, 'Loop Body', ['', node['properties']['index']])
+    if node['properties']['index'] + 1 <= LastIdx:
+        node['properties']['index'] += 1
+        return nodeOutput(1, node, 'Loop Body', ['', node['properties']['index']])
+    if node['properties']['index'] + 1 > LastIdx:
+        return nodeOutput(1, node, 'Completed', ['', node['properties']['index']])
+
 
 @alias("编程/格式化字符串(FormatText)")
 def FormatText(node):

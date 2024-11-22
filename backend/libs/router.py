@@ -1,6 +1,7 @@
 from libs.controllers.AppsResource import AppsResource, OpenResource, FetchResource, ShareResource, StopApp
 from libs.controllers.IconResource import IconResource
 from libs.controllers.LayoutsResource import LayoutsResource, SaveResource
+from libs.controllers.SystemResource import WindowsResource
 from libs.controllers.ToolsResource import CMDResource, ControlCenterResource, StreamResource, TestResource, \
     WallpaperResource, UploadResource, \
     ScriptResource, BackupResource, ImportResource, ImportAppsResource
@@ -15,6 +16,8 @@ resources = (
     (TestResource, '/api/tools/test'),
     (ControlCenterResource, '/api/tools/control'),
     (ImportAppsResource, '/api/tools/apps'),
+
+    (WindowsResource, '/api/system/windows'),
 
     (UploadResource, '/api/upload/image'),
     (ScriptResource, '/api/upload/script'),

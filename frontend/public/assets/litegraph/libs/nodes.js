@@ -21,6 +21,7 @@ const nodes = [
     {name: "编程/获取JSON参数(GetJson)", callback: GetJson},
     {name: "编程/判断(IfValid)", callback: IfValid},
     {name: "编程/选择结构(switchValid)", callback: SwitchValid},
+    {name: "编程/循环列表(ForLoop)", callback: ForLoop},
     {name: "编程/格式化字符串(FormatText)", callback: FormatText},
     {name: "编程/记录日志(logDebug)", callback: logDebug},
     {name: "编程/配置局部变量(SetLocalVariables)", callback: SetLocalVariables},
@@ -48,6 +49,9 @@ const nodes = [
     {name: "模拟/鼠标左键(MouseLeft)", callback: MouseLeft},
     {name: "模拟/鼠标中键(MouseMiddle)", callback: MouseMiddle},
     {name: "模拟/鼠标右键(MouseRight)", callback: MouseRight},
+
+    {name: "系统/获取所有窗口(Windows)", callback: Windows},
+
 ]
 
 const NODE_TYPES = [

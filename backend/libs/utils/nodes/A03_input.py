@@ -8,7 +8,8 @@ def TextInput(node):
 
 @alias("输入/列表(ArrayInput)")
 def ArrayInput(node):
-    return nodeOutput(1, node, 'out', [node['properties']['value'].split('\n')])
+    array = node['properties']['value'].split('\n')
+    return nodeOutput(1, node, 'out', [array])
 
 
 @alias("输入/图片(ImageInput)")
