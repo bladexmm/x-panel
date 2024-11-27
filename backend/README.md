@@ -100,7 +100,16 @@ var = {
     },
 }
 ```
-
+# 待完成节点
+## 组件节点
+* CheckBox
+* Radio
+* Switch
+* TextArea
+* ListItem
+* Card
+* Modal|弹出层(暂不考虑)
+* Snackbar|提示框(暂不考虑)
 
 # 演示版
 禁用功能

@@ -249,3 +249,56 @@ function DisplaySelector() {
 }
 
 DisplaySelector.title = "选择框";
+
+
+
+function DisplaySlider() {
+    this.desc = "滑动块";
+    this.addInput("marks", "array");
+    this.addInput("properties", "array");
+    this.addInput("style", "text");
+
+    this.addOutput("out", "grid_slider")
+    this.addOutput("value", "text")
+    this.addOutput("onChange", "cmd")
+
+
+    this.addProperty("variant", 'plain');
+    this.inputTypeWidget = this.addWidget("combo", "variant", 'plain', {
+        values: MuiVariant,
+        property: "variant"
+    });
+
+    this.addProperty("color", 'primary');
+    this.inputTypeWidget = this.addWidget("combo", "color", 'primary', {
+        values: MuiColor,
+        property: "color"
+    });
+
+    this.addProperty("size", 'md');
+    this.inputTypeWidget = this.addWidget("combo", "size", 'md', {
+        values: ["sm", "md","lg"],
+        property: "size"
+    });
+
+    this.addProperty("orientation", 'horizontal');
+    this.inputTypeWidget = this.addWidget("combo", "orientation", 'horizontal', {
+        values: ["horizontal", "vertical"],
+        property: "orientation"
+    });
+
+    this.addProperty("valueLabelDisplay", 'auto');
+    this.inputTypeWidget = this.addWidget("combo", "labelDisplay", 'auto', {
+        values: ["off", "on", "auto"],
+        property: "valueLabelDisplay"
+    });
+
+    this.addProperty("marks", 'auto');
+    this.addProperty("marks", false);
+    this.addWidget("toggle","marks", false,"marks", { on: "on", off:"off"} );
+
+
+    this.size = [200, 220];
+}
+
+DisplaySlider.title = "滑动块";

@@ -225,3 +225,18 @@ def DisplaySelector(node):
         "options"    : InitData(data),
         "properties" : node['properties']
     }, '', node.get('value', '')])
+
+@alias("绘图/选择框(DisplaySlider)")
+def DisplaySlider(node):
+    marks = getInput(node['inputs'], 0)
+    properties = getInput(node['inputs'], 1)
+    style = getInput(node['inputs'], 2)
+    properties = {**node['properties'],**properties} if properties is not None else node['properties']
+    if marks is not None:
+        node['properties']['marks'] = marks
+    return nodeOutput(1, node, 'out', [{
+        "nid"        : node['id'],
+        "type"       : "slider",
+        "style"      : InitStyle(style),
+        "properties" : properties
+    }, node.get('value', ''), ''])

@@ -75,6 +75,7 @@
             'grid_line_chart': '#138d75',
             'grid_button': '#2e86c1',
             'grid_selector': '#8f9a27',
+            'grid_slider': '#334066FF',
         },
         SLOT_SHAPE: {
             'image': 8,
@@ -89,6 +90,7 @@
             'grid_line_chart': 6,
             'grid_button': 6,
             'grid_selector': 6,
+            'grid_slider': 6,
         },
         SLOT_TYPES: ['image', 'text', 'location', 'response', 'cmd'],
 

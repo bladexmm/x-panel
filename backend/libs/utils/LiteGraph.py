@@ -1,4 +1,5 @@
 import time
+import traceback
 from libs.utils.nodes.graph import call_by_alias
 from libs.utils.log import Logger
 from libs.utils.settings import STATUS_PATH, MAX_NODE_RUN
@@ -21,7 +22,7 @@ class LiteGraph(object):
         self.inputNodes = ["TextInput", "ArrayInput", "ImageInput"]  # 默认输入节点
         self.exitNodes = ["CMDEnd", "DisplayGrid", "SubgraphOutput"]
         self.gridNodes = ["DisplayImage", "DisplayText", "DisplayInput", "DisplayLineChart", "DisplayButton",
-                          "DisplaySelector"]  # 绘图节点
+                          "DisplaySelector","DisplaySlider"]  # 绘图节点
         self.SubGraphNodes = ['SubgraphInput']  # 子函数输入节点
         self.logs = []
         self.linkNow = {}
@@ -33,8 +34,7 @@ class LiteGraph(object):
         self.initStatus()
         self.initNodesData(self.inputNodes)
         self.initNodesData(self.SubGraphNodes)
-        if "id" in self.startNode:
-            self.initNodesData(self.gridNodes)
+        self.initNodesData(self.gridNodes)
         nodeStart = self.findStartNode()
         nextNode = self.findNextNode(nodeStart, self.startNode['slot'])
         if nextNode is None:
@@ -54,8 +54,8 @@ class LiteGraph(object):
             try:
                 outputs = call_by_alias(nextNode['type'], nextNode)
             except Exception as e:
-                outputs = {"code": 2, "name": "error", "data": str(e)}
-
+                error_details = traceback.format_exc()
+                outputs = {"code": 2, "name": "error", "data": str(error_details)}
             if "Subgraph" in nextNode['type']:
                 outputs['nodes'] = nextNode['result']
             if "node" in outputs:

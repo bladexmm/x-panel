@@ -15,14 +15,28 @@ TextInput.desc = "文本";
 function ArrayInput() {
     this.addOutput("array", "array");
     this.addProperty("value", "");
-    this.addWidget("text", "array", "", "value", { multiline: true });  //link to property value
+    this.widget = this.addWidget("text", "array", this.properties.value, "value", { multiline: true });  //link to property value
     this.widgets_up = true;
     this.size = [180, 30];
 }
 
 ArrayInput.title = "列表";
 ArrayInput.desc = "列表";
-
+ArrayInput.prototype.onPropertyChanged = function (name, value){
+    this.widget.value = value;
+    if (value == null || value === "") {
+        return;
+    }
+    try {
+        if (value.trim().startsWith("[") || value.trim().startsWith("{")) {
+            JSON.parse(value); // 尝试解析 JSON
+            this.boxcolor = "#AEA"; // 解析成功，绿色
+        }
+    } catch (error) {
+        alert("JSON格式错误：",error)
+        this.boxcolor = "red"; // 解析失败，红色
+    }
+}
 
 function ImageInput() {
     this.addOutput("image", "image");

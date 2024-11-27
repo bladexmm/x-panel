@@ -9,6 +9,8 @@ import "./index.css";
 import Chart from "react-apexcharts";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
+import Slider from '@mui/joy/Slider';
+import socketService from "../../../utils/socket";
 
 export default function CustomGrid({id}) {
     const [gridStyle, setGridStyle] = React.useState({});
@@ -26,31 +28,28 @@ export default function CustomGrid({id}) {
         return pattern.test(str);
     }
 
-    function GridClick(nid, tid, method) {
+    function GridClick(nid, tid, method, value = null) {
         let StartNode = {
             nid: nid,
             method: method
         };
         for (let i = 0; i < nodes.length; i++) {
-            if(nodes[i].type === "grid_input"){
+
+            if (["grid_input", "grid_selector"].includes(nodes[i].type)) {
                 let inputNode = document.getElementsByClassName(nodes[i].id);
                 inputNode = inputNode[0].getElementsByTagName('input')[0];
                 nodes[i].value = inputNode.value;
             }
-
-            if(nodes[i].type === "grid_selector"){
-                let inputNode = document.getElementsByClassName(nodes[i].id);
-                inputNode = inputNode[0].getElementsByTagName('input')[0];
-                nodes[i].value = inputNode.value;
+            if(value != null && nid === nodes[i]['nid']) {
+                nodes[i].value = value;
             }
-
         }
         request({
             url: "/api/apps/open?id=" + id + "&nodes=" + encodeURIComponent(JSON.stringify(nodes)) + "&startNode=" + JSON.stringify(StartNode),
             method: "GET",
             headers: {"Content-Type": "application/json"},
         }).then((data) => {
-            if(data.data != null && Object.keys(data.data).includes("style")){
+            if (data.data != null && Object.keys(data.data).includes("style")) {
                 setGridStyle(data.data.style)
                 setNodes(data.data.nodes)
             }
@@ -69,17 +68,15 @@ export default function CustomGrid({id}) {
         request({
             url: "/api/apps/open?id=" + id,
             method: "GET",
-            headers: { "Content-Type": "application/json" },
+            headers: {"Content-Type": "application/json"},
             body: {},
         }).then((data) => {
             if (data.data != null) {
                 setGridStyle(data.data.style);
                 setNodes(data.data.nodes != null ? data.data.nodes : []);
                 setRefresh(data.data.refresh);
-                console.log(data.data.refresh);
-
                 // 判断 refresh 是否不为 0，开始定时请求
-                if (data.data.refresh !== 0) {
+                if (parseInt(data.data.refresh) > 0) {
                     // 清除之前的定时器（如果有）
                     if (intervalRef.current) {
                         clearInterval(intervalRef.current);
@@ -90,7 +87,7 @@ export default function CustomGrid({id}) {
                         request({
                             url: "/api/apps/open?id=" + id,
                             method: "GET",
-                            headers: { "Content-Type": "application/json" },
+                            headers: {"Content-Type": "application/json"},
                             body: {},
                         }).then((data) => {
                             if (data.data != null) {
@@ -98,7 +95,7 @@ export default function CustomGrid({id}) {
                                 setNodes(data.data.nodes != null ? data.data.nodes : []);
                             }
                         });
-                    }, data.data.refresh * 1000); // 刷新时间间隔，单位为秒，转为毫秒
+                    }, parseInt(data.data.refresh) * 1000); // 刷新时间间隔，单位为秒，转为毫秒
                 }
             }
         });
@@ -140,12 +137,16 @@ export default function CustomGrid({id}) {
                 } else if (node.type === 'grid_button') {
                     return <Button key={node.id} sx={node.style} {...node.properties} className={node.id}
                                    onClick={() => GridClick(node.nid, node.id, 'onClick')}>{node.placeholder}</Button>
-                }else if (node.type === 'grid_selector') {
+                } else if (node.type === 'grid_selector') {
                     return <Select sx={node.style} {...node.properties} className={node.id}>
                         {Object.entries(node.options).map(([key, value]) => (
                             <Option value={key}>{value}</Option>
                         ))}
                     </Select>
+                } else if (node.type === 'grid_slider') {
+                    return <Slider sx={node.style}  {...node.properties} className={node.id} onChange={(event) => {
+                        GridClick(node.nid, node.id, 'onChange',event.target.value)
+                    }}/>
                 }
             })}
         </div>

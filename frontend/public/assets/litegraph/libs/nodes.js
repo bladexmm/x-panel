@@ -14,6 +14,7 @@ const nodes = [
     {name: "绘图/折线图(DisplayLineChart)", callback: DisplayLineChart},
     {name: "绘图/按钮(DisplayButton)", callback: DisplayButton},
     {name: "绘图/选择框(DisplaySelector)", callback: DisplaySelector},
+    {name: "绘图/滑动条(DisplaySlider)", callback: DisplaySlider},
 
 
     {name: "编程/等待(TimeWait)", callback: TimeWait},

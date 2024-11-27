@@ -2,6 +2,7 @@ import base64
 from glob import glob
 import json
 import os
+import traceback
 
 from flask_restful import Resource, reqparse
 from pypinyin import lazy_pinyin
@@ -129,7 +130,7 @@ class OpenResource(Resource):
         if nodes is not None:
             nodes = json.loads(nodes)
             start = json.loads(start)
-            initNode = [node for node in nodes if node["type"] in ["grid_input", "grid_selector"]]
+            initNode = [node for node in nodes if node["type"] in ["grid_input", "grid_selector","grid_slider"]]
             for node in app['path']['nodes']:
                 findInputNode = [nd for nd in initNode if nd["nid"] == node['id']]
                 if start['nid'] == node['id']:
@@ -145,7 +146,8 @@ class OpenResource(Resource):
         try:
             logs = dg.execute()
         except BaseException as e:
-            Logger.info(f"Node Error:{e}")
+            error_details = traceback.format_exc()
+            Logger.info(f"Draw Node Error:{error_details}")
         dg.initStatus('执行完成', 'exit')
         if len(logs) == 0:
             return result(3, logs, '数据已经生成')
