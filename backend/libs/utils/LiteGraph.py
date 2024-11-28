@@ -169,8 +169,6 @@ class LiteGraph(object):
         inputNodes = [node for node in self.nodes if has_intersection(initNodes, node['type'])]
         for node in inputNodes:
             output = call_by_alias(node['type'], node)
-            Logger.info(f"Init node Type:{node['type']}")
-            Logger.info(f"Init node output:{output}")
             self.outputs[node['id']] = output['data']
 
     def findNextNode(self, node, slotName):

@@ -214,7 +214,6 @@ def DisplaySelector(node):
     style = getInput(node['inputs'], 1)
     data = getInput(node['inputs'], 2)
     defaultValue = getInput(node['inputs'], 3)
-    Logger.debug(f"DisplaySelector Inputs:{node['inputs']}")
     if defaultValue is not None:
         node['properties']['defaultValue'] = defaultValue
     return nodeOutput(1, node, 'out', [{
