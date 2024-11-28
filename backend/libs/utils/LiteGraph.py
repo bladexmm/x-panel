@@ -168,7 +168,6 @@ class LiteGraph(object):
         # set output slot value
         inputNodes = [node for node in self.nodes if has_intersection(initNodes, node['type'])]
         for node in inputNodes:
-            print(f"Init inputNode Type:{node['type']}")
             output = call_by_alias(node['type'], node)
             Logger.info(f"Init node Type:{node['type']}")
             Logger.info(f"Init node output:{output}")
