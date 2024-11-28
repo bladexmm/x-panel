@@ -1,6 +1,6 @@
 import "./index.css"
 import Grid from "@mui/joy/Grid";
-import {ListItem, ListItemButton, Sheet, Slider, styled, Tooltip} from "@mui/joy";
+import {ListItem, Sheet, Slider, styled, Tooltip} from "@mui/joy";
 import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 import StopIcon from '@mui/icons-material/Stop';
@@ -9,13 +9,12 @@ import IconButton from "@mui/joy/IconButton";
 import * as PropTypes from "prop-types";
 import {useSnackbar} from "../SnackbarUtil/SnackbarUtil";
 import {getUserSettings} from "../../utils/settings";
-import RepartitionIcon from '@mui/icons-material/Repartition';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import FullscreenExitRoundedIcon from "@mui/icons-material/FullscreenExitRounded";
 import FullscreenRoundedIcon from "@mui/icons-material/FullscreenRounded";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import request from "../../utils/request";
 import CleaningServicesRoundedIcon from '@mui/icons-material/CleaningServicesRounded';
-import io from 'socket.io-client';
 import socketService from "../../utils/socket";
 
 
@@ -174,7 +173,7 @@ const ControlCenter = ({defaultLayout, yPosition, setYPosition}) => {
                                         "--IconButton-size": "4rem",
                                         borderRadius: '1rem',
                                     }} variant="soft">
-                                        <RepartitionIcon/>
+                                        <CloudUploadIcon/>
                                     </IconButton>
                                 </Tooltip>
                             </div>
@@ -212,7 +211,7 @@ const ControlCenter = ({defaultLayout, yPosition, setYPosition}) => {
                                             '--Slider-thumbSize': 0,
                                             borderRadius: '1rem',
                                             overflow: 'hidden',
-                                            width: '8rem',
+                                            width: '10rem',
                                             height: '4rem'
                                         }}
                                     />

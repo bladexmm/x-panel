@@ -8,6 +8,11 @@ import BlurOnRoundedIcon from '@mui/icons-material/BlurOnRounded';
 import BlurOffRoundedIcon from '@mui/icons-material/BlurOffRounded';
 import PlaylistAddRoundedIcon from '@mui/icons-material/PlaylistAddRounded';
 import ControlCameraIcon from '@mui/icons-material/ControlCamera';
+import LockOpenRoundedIcon from '@mui/icons-material/LockOpenRounded';
+import LockRoundedIcon from '@mui/icons-material/LockRounded';
+import AddLinkRoundedIcon from '@mui/icons-material/AddLinkRounded';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 const Header = ({
                     editing = false,
@@ -42,26 +47,26 @@ const Header = ({
 
                     <Tooltip title="控制中心" size="sm">
                         <IconButton onClick={()=>setYPosition(0)} className='right-btn' id="add-app-btn" variant="soft">
-                            <ControlCameraIcon />
+                            <NotificationsRoundedIcon />
                         </IconButton>
                     </Tooltip>
 
                     <Tooltip title="新增应用" size="sm">
                         <IconButton onClick={openAddDiag} className='right-btn' id="add-app-btn" variant="soft">
-                            <PlaylistAddRoundedIcon />
+                            <AddLinkRoundedIcon />
                         </IconButton>
                     </Tooltip>
 
                     {editing ? (
                         <Tooltip title="保存布局" size="sm">
                             <IconButton variant="soft" onClick={StopPaneEditing} className='right-btn'>
-                                <BlurOffRoundedIcon />
+                                <LockOpenRoundedIcon />
                             </IconButton>
                         </Tooltip>
                     ) : (
                         <Tooltip title="修改布局" size="sm">
                             <IconButton variant="soft" onClick={()=>setPaneDraggable(true)} className='right-btn'>
-                                <BlurOnRoundedIcon />
+                                <LockRoundedIcon />
                             </IconButton>
                         </Tooltip>
                     )}
