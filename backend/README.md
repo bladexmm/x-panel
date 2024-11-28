@@ -1,44 +1,6 @@
 # XBlade-Panel
 ## 项目软件版本
 python: 3.10.4
-## 项目打包
-* nuitka 打包exe
-* nsis 生成安装包(需要将软件添加到环境变量中)
-
-### nuitka 打包命令
-```shell
-nuitka --standalone `
-  --windows-company-name=bladexmm `
-  --windows-file-version=2.2.0 `
-  --windows-product-name=XBLADE-PANEL `
-  --include-data-dir=data=data `
-  --include-data-dir=react_app=react_app `
-  --windows-icon-from-ico=data/blade.ico `
-  --windows-uac-admin `
-  --nofollow-imports `
-  --disable-console `
-  --jobs=4 `
-  --include-package=flask `
-  --include-module=win32com `
-  -o XBLADE main.py
-```
-开发版打包
-```shell
-nuitka --standalone `
-  --windows-company-name=bladexmm `
-  --windows-file-version=2.1.1 `
-  --windows-product-name=XBLADE-PANEL `
-  --include-data-dir=data=data `
-  --include-data-dir=react_app=react_app `
-  --windows-icon-from-ico=data/blade.ico `
-  --windows-force-stderr-spec='logs/err.log' `
-  --windows-uac-admin `
-  --nofollow-imports `
-  --enable-console `
-  --include-package=flask `
-  --include-module=win32com `
-  -o XBLADE main.py
-```
 ## 节点简介
 
 ### 绘图/折线图(DisplayLineChart)

@@ -222,11 +222,11 @@ def DisplaySelector(node):
         "type"       : "selector",
         "placeholder": placeholder,
         "style"      : InitStyle(style),
-        "options"    : InitData(data),
+        "options"    : data,
         "properties" : node['properties']
     }, '', node.get('value', '')])
 
-@alias("绘图/选择框(DisplaySlider)")
+@alias("绘图/滑动块(DisplaySlider)")
 def DisplaySlider(node):
     marks = getInput(node['inputs'], 0)
     properties = getInput(node['inputs'], 1)

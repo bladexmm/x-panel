@@ -168,6 +168,7 @@ class LiteGraph(object):
         # set output slot value
         inputNodes = [node for node in self.nodes if has_intersection(initNodes, node['type'])]
         for node in inputNodes:
+            print(f"Init inputNode Type:{node['type']}")
             output = call_by_alias(node['type'], node)
             Logger.info(f"Init node Type:{node['type']}")
             Logger.info(f"Init node output:{output}")
@@ -179,6 +180,9 @@ class LiteGraph(object):
             return None
         cmdOutput = [output for output in node['outputs'] if output['type'] == 'cmd' and output['name'] == slotName]
         cmdOutput = None if len(cmdOutput) == 0 else cmdOutput[0]
+        if "JumpNode" in node['type'] and cmdOutput is not None:
+            links = cmdOutput['links'] if cmdOutput['links'] is not None else []
+            cmdOutput = None if len(links) == 0 else cmdOutput
         # jumpNode output links is none | start find jump target node
         if "JumpNode" in node['type'] and (cmdOutput is None or cmdOutput['links'] is None):
             # filter nodes to get jumpNodes
