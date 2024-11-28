@@ -1,6 +1,6 @@
 # 默认html文件位置
 HTML_PATH = "react_app"
-SOFTWARE_VERSION = "2.3.1"
+SOFTWARE_VERSION = "2.4.1"
 # 默认上传图片存放位置
 IMAGE_PATH = f"{HTML_PATH}/img"
 

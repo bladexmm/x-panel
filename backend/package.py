@@ -174,7 +174,7 @@ def build_package(command, filename):
 
 def build_tools_pack():
     command = [
-        'nuitka', '--onefile',
+        'nuitka', '--onefile','--deployment',
         '--windows-company-name=bladexmm',
         '--windows-file-version=' + SOFTWARE_VERSION,
         '--windows-product-name=XBLADE-PANEL',
@@ -195,9 +195,8 @@ def build_tools_pack():
 
 def build_launcher_pack():
     command = [
-        "nuitka", "--onefile",
+        "nuitka", "--onefile",'--deployment',
         '--windows-icon-from-ico=data/blade.ico',
-        "--windows-console-mode=disable",
         "client_launcher.py"
     ]
     build_package(command, 'client_launcher')
@@ -211,9 +210,11 @@ def build_launcher_pack():
 def build_main_package():
     command = [
         'nuitka', '--standalone',
-        '--no-debug', '--mingw64',
-        '--windows-company-name=bladexmm',
-        '--windows-file-version=' + SOFTWARE_VERSION,
+        '--no-debug', '--mingw64','--deployment',
+        '--report=compilation-report.xml',
+        '--copyright=bladexmm',
+        '--file-version=' + SOFTWARE_VERSION,
+        '--product-version=' + SOFTWARE_VERSION,
         '--windows-product-name=XBLADE-PANEL',
         '--include-data-dir=data=data',
         '--include-data-dir=react_app=react_app',
@@ -299,3 +300,4 @@ def main():
 if __name__ == "__main__":
     main()
     # build_launcher_pack()
+ 
