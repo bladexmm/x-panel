@@ -65,13 +65,20 @@ var = {
 # 待完成节点
 ## 组件节点
 * CheckBox
-* Radio
+* Radio(完成)
 * Switch
 * TextArea
 * ListItem
 * Card
 * Modal|弹出层(暂不考虑)
 * Snackbar|提示框(暂不考虑)
+## 系统节点
+* 修改音量
+* 打开和关闭蓝牙
+* 打开关闭WIFI
+* CPU占用率
+* 内存占用率
+* GPU占用率
 
 # 演示版
 禁用功能

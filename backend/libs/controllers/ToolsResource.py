@@ -8,12 +8,12 @@ from libs.model.Apps import Apps
 from libs.model.Layouts import Layouts
 from libs.model.models import db
 from libs.service import generate_video, getWallpapers, uploadFile
-from libs.utils import system
+from libs.utils.system import operator
 from libs.utils.LiteGraph import LiteGraph
 from libs.utils.installedApps import init_windows_apps, windows_apps_all
 from libs.utils.log import Logger
 from libs.utils.settings import STATUS_PATH
-from libs.utils.system import clearStatus
+from libs.utils.system.operator import clearStatus
 from libs.utils.tools import read_json, result, copy, zipFolder, format_date, delete_folder, unzip_file, copy_dir, \
     copy_app_images, list_to_dict, generate_random_filename
 from flask import Response, request
@@ -237,7 +237,7 @@ class ControlCenterResource(Resource):
                 data = {
                     "apps"  : [],
                     "system": {
-                        "volume": system.volume()
+                        "volume": operator.volume()
                     }
                 }
                 files = glob(f'{STATUS_PATH}*')

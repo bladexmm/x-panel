@@ -5,7 +5,7 @@ from libs.controllers.SystemResource import WindowsResource
 from libs.controllers.ToolsResource import CMDResource, ControlCenterResource, StreamResource, TestResource, \
     WallpaperResource, UploadResource, \
     ScriptResource, BackupResource, ImportResource, ImportAppsResource
-from libs.utils.system import clearApps, setVolume
+from libs.utils.system.operator import clearApps, setVolume
 
 resources = (
     (CMDResource, '/api/tools/commands'),

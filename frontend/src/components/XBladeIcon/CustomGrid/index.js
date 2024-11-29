@@ -11,6 +11,9 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Slider from '@mui/joy/Slider';
 import socketService from "../../../utils/socket";
+import {Radio, RadioGroup} from "@mui/joy";
+import FormControl from "@mui/joy/FormControl";
+import FormLabel from "@mui/joy/FormLabel";
 
 export default function CustomGrid({id}) {
     const [gridStyle, setGridStyle] = React.useState({});
@@ -40,6 +43,16 @@ export default function CustomGrid({id}) {
                 let inputNode = document.getElementsByClassName(id + "-" + nodes[i].id);
                 inputNode = inputNode[0].getElementsByTagName('input')[0];
                 nodes[i].value = inputNode.value;
+            }
+            if("grid_radio" === nodes[i].type){
+                let inputNodes = document.getElementsByClassName(id + "-" + nodes[i].id)[0].getElementsByTagName('input');
+                // 遍历所有的 input 元素，检查是否被选中
+                for (let inputNode of inputNodes) {
+                    if (inputNode.checked) {
+                        // 只有当 input 被选中时执行的代码
+                        nodes[i].value = inputNode.value;
+                    }
+                }
             }
             if(value != null && nid === nodes[i]['nid']) {
                 nodes[i].value = value;
@@ -129,7 +142,7 @@ export default function CustomGrid({id}) {
 
 
     return (
-        <div className="grid-component-node" style={gridStyle}>
+        <FormControl className="grid-component-node" style={gridStyle}>
             {nodes.map((node, i) => {
                 if (node.type === 'grid_image') {
                     node.image = isFullUrl(node.image) ? node.image : host + node.image;
@@ -158,12 +171,21 @@ export default function CustomGrid({id}) {
                             <Option value={key}>{value}</Option>
                         ))}
                     </Select>
+                } else if (node.type === 'grid_radio') {
+                    return <RadioGroup  sx={node.style} {...node.properties} className={id + "-" + node.id}
+                                        onChange={(event) => {
+                                            GridClick(node.nid, node.id, 'onChange',event.target.value)
+                                        }}>
+                        {node.radios.map((radio, i) => (
+                            <Radio  value={radio.value} label={radio.name} {...radio.properties}/>
+                        ))}
+                    </RadioGroup >
                 } else if (node.type === 'grid_slider') {
                     return <Slider sx={node.style}  {...node.properties} className={id + "-" + node.id} onChange={(event) => {
                         GridClick(node.nid, node.id, 'onChange',event.target.value)
                     }}/>
                 }
             })}
-        </div>
+        </FormControl>
     )
 }

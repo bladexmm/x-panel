@@ -111,6 +111,7 @@ class GridResource(Resource):
         id = data.get('id')
         nodes = data.get('nodes', None)
         start = data.get('startNode', None)
+        grid_input_node = ["grid_input", "grid_selector","grid_slider","grid_radio"]
 
         db_session = db.session
         app = db_session.query(Apps).filter_by(id = id).first()
@@ -125,7 +126,7 @@ class GridResource(Resource):
         startNode = {"type": "DisplayStart", "slot": "out"}
 
         if nodes is not None:
-            initNode = [node for node in nodes if node["type"] in ["grid_input", "grid_selector","grid_slider"]]
+            initNode = [node for node in nodes if node["type"] in grid_input_node]
             for node in app['path']['nodes']:
                 findInputNode = [nd for nd in initNode if nd["nid"] == node['id']]
                 if start['nid'] == node['id']:

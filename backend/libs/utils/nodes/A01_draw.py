@@ -244,3 +244,17 @@ def DisplaySlider(node):
         "style"      : InitStyle(style),
         "properties" : properties
     }, node.get('value', ''), ''])
+
+@alias("绘图/单选按钮(DisplayRadioGroup)")
+def DisplayRadioGroup(node):
+    style = getInput(node['inputs'], 0)
+    radios = getInput(node['inputs'], 1)
+    properties = getInput(node['inputs'], 2)
+    properties = {**node['properties'],**properties} if properties is not None else node['properties']
+    return nodeOutput(1, node, 'out', [{
+        "nid"        : node['id'],
+        "type"       : "radio",
+        "style"      : InitStyle(style),
+        "properties" : properties,
+        "radios"     : radios,
+    }, node.get('value', ''), ''])

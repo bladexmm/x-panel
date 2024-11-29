@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request
 
-from libs.utils.system import getProcesses
+from libs.utils.system.operator import getProcesses
 from libs.utils.tools import result
 
 

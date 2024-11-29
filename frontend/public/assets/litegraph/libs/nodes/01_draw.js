@@ -215,6 +215,41 @@ DisplayButton.title = "按钮";
 
 
 
+function DisplayRadioGroup() {
+    this.desc = "单选按钮";
+    this.addInput("style", "text");
+    this.addInput("radios", "array")
+    this.addInput("properties", "array");
+
+
+    this.addOutput("out", "grid_radio")
+    this.addOutput("value", "text")
+    this.addOutput("onChange", "cmd")
+
+    this.addProperty("variant", 'plain');
+    this.inputTypeWidget = this.addWidget("combo", "variant", 'plain', {
+        values: MuiVariant,
+        property: "variant"
+    });
+
+    this.addProperty("color", 'primary');
+    this.inputTypeWidget = this.addWidget("combo", "color", 'primary', {
+        values: MuiColor,
+        property: "color"
+    });
+
+    this.addProperty("size", 'md');
+    this.inputTypeWidget = this.addWidget("combo", "size", 'md', {
+        values: ["sm", "md","lg"],
+        property: "size"
+    });
+
+    this.size = [160, 150];
+}
+
+DisplayRadioGroup.title = "单选按钮";
+
+
 
 function DisplaySelector() {
     this.desc = "选择框";

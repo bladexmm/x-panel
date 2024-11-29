@@ -22,7 +22,7 @@ class LiteGraph(object):
         self.inputNodes = ["TextInput", "ArrayInput", "ImageInput"]  # 默认输入节点
         self.exitNodes = ["CMDEnd", "DisplayGrid", "SubgraphOutput"]
         self.gridNodes = ["DisplayImage", "DisplayText", "DisplayInput", "DisplayLineChart", "DisplayButton",
-                          "DisplaySelector","DisplaySlider"]  # 绘图节点
+                          "DisplaySelector","DisplaySlider","DisplayRadioGroup"]  # 绘图节点
         self.SubGraphNodes = ['SubgraphInput']  # 子函数输入节点
         self.logs = []
         self.linkNow = {}

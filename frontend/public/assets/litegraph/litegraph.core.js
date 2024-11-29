@@ -76,6 +76,7 @@
             'grid_button': '#2e86c1',
             'grid_selector': '#8f9a27',
             'grid_slider': '#334066FF',
+            'grid_radio': '#311159FF',
         },
         SLOT_SHAPE: {
             'image': 8,
@@ -91,6 +92,7 @@
             'grid_button': 6,
             'grid_selector': 6,
             'grid_slider': 6,
+            'grid_radio': 6,
         },
         SLOT_TYPES: ['image', 'text', 'location', 'response', 'cmd'],
 
