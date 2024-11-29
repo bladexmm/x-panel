@@ -51,8 +51,8 @@ export default function CustomGrid({id}) {
             headers: {"Content-Type": "application/json"},
             body:{
                 "id":id,
-                "nodes": JSON.stringify(nodes),
-                "startNode":JSON.stringify(StartNode)
+                "nodes": nodes,
+                "startNode":StartNode
             },
         }).then((data) => {
             if (data.data != null && Object.keys(data.data).includes("style")) {

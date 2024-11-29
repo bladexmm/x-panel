@@ -83,13 +83,15 @@ def DisplayInput(node):
     placeholder = getInput(node['inputs'], 0)
     style = getInput(node['inputs'], 1)
     value = getInput(node['inputs'], 2)
-    node['properties']['defaultValue'] = '' if value is None else value
+    properties = getInput(node['inputs'], 3)
+    properties = {**node['properties'],**properties} if properties is not None else node['properties']
+    properties['defaultValue'] = '' if value is None else value
     return nodeOutput(1, node, 'out', [{
         "nid"        : node['id'],
         "type"       : "input",
         "style"      : InitStyle(style),
         "placeholder": placeholder,
-        "properties" : node['properties']
+        "properties" : properties
     }, node.get('value', '')])
 
 

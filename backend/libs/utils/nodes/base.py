@@ -31,6 +31,8 @@ def nodeOutput(code, node, name = 'cmd', data = None):
 
 
 def getInput(inputs, slot, default = None):
+    if slot >= len(inputs):
+        return default
     inputSlot = inputs[slot]
     return inputSlot.get('value', default)
 
