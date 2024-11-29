@@ -18,6 +18,7 @@ export default function CustomGrid({id}) {
     const [refresh, setRefresh] = React.useState(0);
     const host = getUserSettings('settings.host')
     const intervalRef = React.useRef(null);  // 用来保存定时器 ID
+    const ValueNodes = ["grid_input", "grid_selector","grid_slider"];
 
 
     function isFullUrl(str) {
@@ -35,7 +36,7 @@ export default function CustomGrid({id}) {
         };
         for (let i = 0; i < nodes.length; i++) {
 
-            if (["grid_input", "grid_selector"].includes(nodes[i].type)) {
+            if (ValueNodes.includes(nodes[i].type)) {
                 let inputNode = document.getElementsByClassName(nodes[i].id);
                 inputNode = inputNode[0].getElementsByTagName('input')[0];
                 nodes[i].value = inputNode.value;
@@ -45,9 +46,14 @@ export default function CustomGrid({id}) {
             }
         }
         request({
-            url: "/api/apps/open?id=" + id + "&nodes=" + encodeURIComponent(JSON.stringify(nodes)) + "&startNode=" + JSON.stringify(StartNode),
-            method: "GET",
+            url: "/api/apps/grid",
+            method: "POST",
             headers: {"Content-Type": "application/json"},
+            body:{
+                "id":id,
+                "nodes": JSON.stringify(nodes),
+                "startNode":JSON.stringify(StartNode)
+            },
         }).then((data) => {
             if (data.data != null && Object.keys(data.data).includes("style")) {
                 setGridStyle(data.data.style)
@@ -63,13 +69,26 @@ export default function CustomGrid({id}) {
         }
     };
 
+    function UpdateValue(nid,value){
+        setNodes(prevNodes => {
+            return prevNodes.map(node => {
+                if (node.nid === nid && value != null) {
+                    return { ...node, value }; // 创建新对象并更新 value
+                }
+                return node; // 保持其他节点不变
+            });
+        });
+    }
+
     useEffect(() => {
         // 发起请求
         request({
-            url: "/api/apps/open?id=" + id,
-            method: "GET",
+            url: "/api/apps/grid",
+            method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: {},
+            body: {
+                "id":id
+            },
         }).then((data) => {
             if (data.data != null) {
                 setGridStyle(data.data.style);

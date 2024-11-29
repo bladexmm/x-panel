@@ -4,14 +4,9 @@ import Grid from '@mui/joy/Grid';
 import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
 import {ListItemContent, styled, Tooltip} from "@mui/joy";
-import BlurOnRoundedIcon from '@mui/icons-material/BlurOnRounded';
-import BlurOffRoundedIcon from '@mui/icons-material/BlurOffRounded';
-import PlaylistAddRoundedIcon from '@mui/icons-material/PlaylistAddRounded';
-import ControlCameraIcon from '@mui/icons-material/ControlCamera';
 import LockOpenRoundedIcon from '@mui/icons-material/LockOpenRounded';
 import LockRoundedIcon from '@mui/icons-material/LockRounded';
 import AddLinkRoundedIcon from '@mui/icons-material/AddLinkRounded';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 const Header = ({

@@ -121,6 +121,7 @@ function DisplayInput() {
     this.addInput("placeholder", "text")
     this.addInput("style", "text");
     this.addInput("value", "text");
+    this.addInput("properties", "array");
 
 
     this.addOutput("out", "grid_input")

@@ -105,15 +105,12 @@ class AppsResource(Resource):
         else:
             return {'message': f"App with id {args['id']} not found"}, 404
 
-
-class OpenResource(Resource):
+class GridResource(Resource):
     def post(self):
-        return openApp()
-
-    def get(self):
-        id = request.args.get('id')
-        nodes = request.args.get('nodes', None)
-        start = request.args.get('startNode', None)
+        data = request.get_json()
+        id = data.get('id')
+        nodes = data.get('nodes', None)
+        start = data.get('startNode', None)
 
         db_session = db.session
         app = db_session.query(Apps).filter_by(id = id).first()
@@ -137,7 +134,8 @@ class OpenResource(Resource):
                     startNode = {"id": node['id'], "slot": start['method']}
                 if len(findInputNode) == 0:
                     continue
-                node['value'] = findInputNode[0]['value']
+                if 'value' in findInputNode[0]:
+                    node['value'] = findInputNode[0]['value']
         dg = LiteGraph(app, parent, startNode)
         data = dg.getStatus()
         if not data:
@@ -156,6 +154,10 @@ class OpenResource(Resource):
         layout = logs[-1]['data'] if 'grid-template-areas' in logs[-1]['data'] else None
         return result(1, layout, '数据已经生成')
 
+
+class OpenResource(Resource):
+    def post(self):
+        return openApp()
 
 class FetchResource(Resource):
     def post(self):

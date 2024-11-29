@@ -1,4 +1,4 @@
-from libs.controllers.AppsResource import AppsResource, OpenResource, FetchResource, ShareResource, StopApp
+from libs.controllers.AppsResource import AppsResource, GridResource, OpenResource, FetchResource, ShareResource, StopApp
 from libs.controllers.IconResource import IconResource
 from libs.controllers.LayoutsResource import LayoutsResource, SaveResource
 from libs.controllers.SystemResource import WindowsResource
@@ -27,6 +27,7 @@ resources = (
 
     (AppsResource, '/api/apps'),
     (OpenResource, '/api/apps/open'),
+    (GridResource, '/api/apps/grid'),
     (FetchResource, '/api/apps/fetch'),
     (ShareResource, '/api/apps/share'),
     (StopApp, '/api/apps/stop'),
