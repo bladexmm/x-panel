@@ -32,6 +32,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import FlightTakeoffRoundedIcon from '@mui/icons-material/FlightTakeoffRounded';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 const VisuallyHiddenInput = styled('input')`
     clip: rect(0 0 0 0);
@@ -125,6 +126,16 @@ export default function Qrcode({defaultLayout}) {
     const browserWallpapers = ()=>{
         request({
             url: "/api/tools/wallpaper",
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+        }).then((res) => {
+            showMessage(res.msg, res.code);
+        })
+    }
+
+    const browserLogs = ()=>{
+        request({
+            url: "/api/tools/logs",
             method: "POST",
             headers: {"Content-Type": "application/json"},
         }).then((res) => {
@@ -288,6 +299,28 @@ export default function Qrcode({defaultLayout}) {
                     <Button variant="soft" className="system-recover-btn" color="neutral"
                             startDecorator={<FolderIcon sx={{fontSize: "1rem"}}/>} onClick={browserWallpapers}>
                         浏览壁纸
+                    </Button>
+                </Grid>
+            </Grid>
+
+
+            <Grid xs={6} sm={8} md={12} container direction="rows" justifyContent="center" alignItems="center"
+                  spacing={2} columns={{xs: 6, sm: 8, md: 12}}>
+                <Grid xs={6} sm={8} md={3}>
+                    <ListItemContent>
+                        <Typography level="title-lg">
+                            系统日志
+                        </Typography>
+                        <Typography level="body-xs" fontFamily="monospace" sx={{opacity: '70%'}}>
+                            历史运行记录及报错
+                        </Typography>
+                    </ListItemContent>
+                </Grid>
+                <Grid xs={0} sm={0} md={5}></Grid>
+                <Grid xs={6} sm={8} md={3}>
+                    <Button variant="soft" className="system-recover-btn" color="neutral"
+                            startDecorator={<AttachFileIcon sx={{fontSize: "1rem"}}/>} onClick={browserLogs}>
+                        打开文件
                     </Button>
                 </Grid>
             </Grid>

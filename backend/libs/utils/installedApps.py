@@ -16,7 +16,7 @@ from pypinyin import lazy_pinyin
 from libs.model.SystemApps import SystemApps
 from libs.model.models import db
 from libs.utils.website import md5
-from libs.utils.xprofile import profile
+from libs.utils.system.xprofile import profile
 
 
 def is_valid_path(path):

@@ -14,7 +14,7 @@ from libs.model.models import db
 from libs.utils.LiteGraph import LiteGraph
 from libs.utils.installedApps import windows_apps_all
 from libs.utils.log import Logger
-from libs.utils.reg import add_reg, remove_reg, remove_auto_start_key, registry_auto_start_key
+from libs.utils.system.reg import add_reg, remove_reg, remove_auto_start_key, registry_auto_start_key
 from libs.utils.settings import IMAGE_PATH, HTML_PATH
 from libs.utils.tools import result, extract_icon_from_exe, generate_random_md5_with_timestamp, \
     open_with_default_program, generate_random_filename, generate_date_path

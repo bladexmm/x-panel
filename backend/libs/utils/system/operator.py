@@ -1,3 +1,4 @@
+from calendar import c
 from glob import glob
 import os
 import time
@@ -106,3 +107,21 @@ def clearApps(ids=[]):
             if os.path.exists(f'{STATUS_PATH}{aid}.json'):
                 os.remove(f'{STATUS_PATH}{aid}.json')
     emit("clearApps", ids, broadcast = True)
+
+def getUsage():
+    cpu_percent = psutil.cpu_percent(interval=1,percpu=True)
+    average_percent = round(sum(cpu_percent) / len(cpu_percent),2)
+    memory = psutil.virtual_memory()
+    return {
+        "cpu": {
+            "percent": average_percent,
+            "cores": len(cpu_percent),
+            "all":cpu_percent
+        },
+        "memory": {
+            "percent": memory.percent,
+            "total": round(memory.total / (1024**3), 2),  # 总内存，单位 GB
+            "used": round(memory.used / (1024**3), 2),    # 已用内存，单位 GB
+            "free": round(memory.free / (1024**3), 2),    # 空闲内存，单位 GB
+        }
+    }

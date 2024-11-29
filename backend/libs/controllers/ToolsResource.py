@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 import time
@@ -71,11 +72,19 @@ class WallpaperResource(Resource):
 
     def post(self):
         absolute_path = os.path.abspath('./react_app/assets/wallpapers/')
-        os.system(f"start {absolute_path}")
-        # script_dir = os.path.dirname(os.path.abspath(__file__))
-        # absolute_path = os.path.join(script_dir, 'react_app/assets/wallpapers/')
-        # os.system(f'start {absolute_path}')
+        os.system(f'start "" "{absolute_path}"')
         return result(1, '', '打开文件夹成功')
+    
+
+
+class LogsResource(Resource):
+    def post(self):
+        now = datetime.datetime.now()
+        log_dir = os.path.join("logs", now.strftime("%Y"), now.strftime("%m"))
+        log_file = os.path.join(log_dir, now.strftime("%d") + ".log")
+        absolute_path = os.path.abspath(log_file)
+        os.system(f'start "" "{absolute_path}"')
+        return result(1, '', '打开文件成功')
 
 
 class UploadResource(Resource):

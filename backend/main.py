@@ -13,7 +13,7 @@ from pystray import MenuItem, Menu
 from libs import router
 from libs.model.models import db
 from libs.service import systemInfo
-from libs.utils.reg import is_registry_startup, switch_startup_registry
+from libs.utils.system.reg import is_registry_startup, switch_startup_registry
 from libs.utils.tools import allowed_file, get_local_ip, default_port, resize_image, delete_files
 
 # 初始化Flask

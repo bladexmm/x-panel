@@ -53,6 +53,7 @@ const nodes = [
     {name: "模拟/鼠标右键(MouseRight)", callback: MouseRight},
 
     {name: "系统/获取所有窗口(Windows)", callback: Windows},
+    {name: "系统/系统资源使用(SystemUsage)", callback: SystemUsage},
 
 ]
 

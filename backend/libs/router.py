@@ -2,7 +2,7 @@ from libs.controllers.AppsResource import AppsResource, GridResource, OpenResour
 from libs.controllers.IconResource import IconResource
 from libs.controllers.LayoutsResource import LayoutsResource, SaveResource
 from libs.controllers.SystemResource import WindowsResource
-from libs.controllers.ToolsResource import CMDResource, ControlCenterResource, StreamResource, TestResource, \
+from libs.controllers.ToolsResource import CMDResource, ControlCenterResource, LogsResource, StreamResource, TestResource, \
     WallpaperResource, UploadResource, \
     ScriptResource, BackupResource, ImportResource, ImportAppsResource
 from libs.utils.system.operator import clearApps, setVolume
@@ -11,6 +11,8 @@ resources = (
     (CMDResource, '/api/tools/commands'),
     (StreamResource, '/api/tools/stream'),
     (WallpaperResource, '/api/tools/wallpaper'),
+    (LogsResource, '/api/tools/logs'),
+
     (BackupResource, '/api/tools/backup'),
     (ImportResource, '/api/tools/import'),
     (TestResource, '/api/tools/test'),
