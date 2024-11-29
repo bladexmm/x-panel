@@ -201,12 +201,15 @@ def DisplayChart(node):
 def DisplayButton(node):
     placeholder = getInput(node['inputs'], 0)
     style = getInput(node['inputs'], 1)
+    properties = getInput(node['inputs'], 2)
+    properties = {**node['properties'],**properties} if properties is not None else node['properties']
+    
     return nodeOutput(1, node, 'out', [{
         "nid"        : node['id'],
         "type"       : "button",
         "placeholder": placeholder,
         "style"      : InitStyle(style),
-        "properties" : node['properties']
+        "properties" : properties
     }, node.get('value', '')])
 
 

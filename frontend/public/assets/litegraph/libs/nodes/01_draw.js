@@ -184,6 +184,7 @@ function DisplayButton() {
     this.desc = "按钮";
     this.addInput("placeholder", "text")
     this.addInput("style", "text");
+    this.addInput("properties", "array");
 
 
     this.addOutput("out", "grid_button")

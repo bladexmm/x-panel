@@ -37,7 +37,7 @@ export default function CustomGrid({id}) {
         for (let i = 0; i < nodes.length; i++) {
 
             if (ValueNodes.includes(nodes[i].type)) {
-                let inputNode = document.getElementsByClassName(nodes[i].id);
+                let inputNode = document.getElementsByClassName(id + "-" + nodes[i].id);
                 inputNode = inputNode[0].getElementsByTagName('input')[0];
                 nodes[i].value = inputNode.value;
             }
@@ -134,36 +134,32 @@ export default function CustomGrid({id}) {
                 if (node.type === 'grid_image') {
                     node.image = isFullUrl(node.image) ? node.image : host + node.image;
                     return <img key={node.id} onClick={() => GridClick(node.nid, node.id, 'onClick')}
-                                className={node.id}
+                                className={id + "-" + node.id}
                                 src={node.image} style={node.style} alt={node.id}/>
 
                 } else if (node.type === 'grid_string') {
-                    return <Typography key={node.id} className={node.id} {...node.properties} sx={node.style}
+                    return <Typography key={node.id} className={id + "-" + node.id} {...node.properties} sx={node.style}
                                        onClick={() => GridClick(node.nid, node.id, 'onClick')}> {node.text}</Typography>
 
                 } else if (node.type === 'grid_input') {
-                    return <Input {...node.properties}
-                                  onKeyDown={(event) => handleKeyDown(event, node.nid, node.id, 'Enter')} key={node.id}
-                                  className={node.id} placeholder={node.placeholder} style={node.style}/>
+                    return <Input {...node.properties} key={node.id} className={id + "-" + node.id} placeholder={node.placeholder} style={node.style}
+                                  onKeyDown={(event) => handleKeyDown(event, node.nid, node.id, 'Enter')}/>
 
                 } else if (node.type === 'grid_line_chart') {
-                    return <Chart style={node.style} className={node.id} key={node.id}
-                                  options={node.options}
-                                  series={node.series}
-                                  type="line"
-                    />
+                    return <Chart style={node.style} className={id + "-" + node.id} key={node.id}
+                                  options={node.options} series={node.series} type="line"/>
 
                 } else if (node.type === 'grid_button') {
-                    return <Button key={node.id} sx={node.style} {...node.properties} className={node.id}
+                    return <Button key={node.id} sx={node.style} {...node.properties} className={id + "-" + node.id}
                                    onClick={() => GridClick(node.nid, node.id, 'onClick')}>{node.placeholder}</Button>
                 } else if (node.type === 'grid_selector') {
-                    return <Select sx={node.style} {...node.properties} className={node.id}>
+                    return <Select sx={node.style} {...node.properties} className={id + "-" + node.id}>
                         {Object.entries(node.options).map(([key, value]) => (
                             <Option value={key}>{value}</Option>
                         ))}
                     </Select>
                 } else if (node.type === 'grid_slider') {
-                    return <Slider sx={node.style}  {...node.properties} className={node.id} onChange={(event) => {
+                    return <Slider sx={node.style}  {...node.properties} className={id + "-" + node.id} onChange={(event) => {
                         GridClick(node.nid, node.id, 'onChange',event.target.value)
                     }}/>
                 }
