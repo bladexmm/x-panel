@@ -59,6 +59,7 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^7.1.0"
+    "@craco/craco": "^7.1.0",
+    "prettier-plugin-align": "^0.0.1-alpha.1"
   }
 }

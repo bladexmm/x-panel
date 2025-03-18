@@ -33,7 +33,8 @@ import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import FlightTakeoffRoundedIcon from '@mui/icons-material/FlightTakeoffRounded';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-
+import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 const VisuallyHiddenInput = styled('input')`
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -253,6 +254,32 @@ export default function Qrcode({defaultLayout}) {
                         </Button>
                         <Button variant="soft" onClick={() => {systemMenu("remove");}} className="system-recover-btn" color="neutral" startDecorator={<PlaylistRemoveIcon sx={{fontSize: "1rem"}}/>}>
                             移除
+                        </Button>
+                    </ButtonGroup>
+                </Grid>
+            </Grid>
+
+
+            <Grid xs={6} sm={8} md={12} container direction="row" justifyContent="center" alignItems="center" spacing={2} columns={{xs: 6, sm: 8, md: 12}}>
+                <Grid xs={6} sm={8} md={3}>
+                    <ListItemContent>
+                        <Typography level="title-lg">
+                            Dock栏
+                        </Typography>
+                        <Typography level="body-xs" fontFamily="monospace" sx={{opacity: '70%'}}>
+                            显示/隐藏底部栏目
+                        </Typography>
+                    </ListItemContent>
+                </Grid>
+                <Grid xs={0} sm={0} md={5}></Grid>
+
+                <Grid xs={6} sm={8} md={3}>
+                    <ButtonGroup>
+                        <Button variant="soft" onClick={() => {saveUserSettings('settings.isShowDock', 'show');window.location.reload();}} className="system-recover-btn" color="neutral" startDecorator={<VisibilityRoundedIcon sx={{fontSize: "1rem"}}/>}>
+                            显示
+                        </Button>
+                        <Button variant="soft" onClick={() => {saveUserSettings('settings.isShowDock', 'hidden');window.location.reload();}} className="system-recover-btn" color="neutral" startDecorator={<VisibilityOffRoundedIcon sx={{fontSize: "1rem"}}/>}>
+                            隐藏
                         </Button>
                     </ButtonGroup>
                 </Grid>

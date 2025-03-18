@@ -1,34 +1,39 @@
 import './App.css';
-import GridLayout from "react-grid-layout";
-import "react-grid-layout/css/styles.css";
-import "react-resizable/css/styles.css";
+import GridLayout from 'react-grid-layout';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 import HorizontalScrollbar from '../../components/HorizontalScrollbar';
-import XBladeIcon from "../../components/XBladeIcon";
+import XBladeIcon from '../../components/XBladeIcon';
 
 import * as React from 'react';
-import {useEffect, useState} from "react";
-import {BrowserRouter as Router, Route, Switch, Link, useNavigate} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Link,
+    useNavigate,
+} from 'react-router-dom';
 
-import SettingsDialog from "../../components/Settings";
-import {getUserSettings} from "../../utils/settings";
-import AddApplication from "../../components/AddApplication";
-import request from "../../utils/request";
-import Header from "../../components/Header";
-import RightClickMenu from "../../components/RightClickMenu";
-import Search from "../../components/Search";
+import SettingsDialog from '../../components/Settings';
+import { getUserSettings } from '../../utils/settings';
+import AddApplication from '../../components/AddApplication';
+import request from '../../utils/request';
+import Header from '../../components/Header';
+import RightClickMenu from '../../components/RightClickMenu';
+import Search from '../../components/Search';
 import Grid from '@mui/joy/Grid';
-import WallpaperBasicGrid from "../../components/Settings/Wallpapers";
-import {CssVarsProvider} from '@mui/joy/styles';
-import {Divider, ThemeProvider} from "@mui/joy";
-import Layouts from "../../components/Layouts";
-import Commands from "../../components/Commands";
-import {SnackbarProvider} from "../../components/SnackbarUtil/SnackbarUtil";
+import WallpaperBasicGrid from '../../components/Settings/Wallpapers';
+import { CssVarsProvider } from '@mui/joy/styles';
+import { Divider, ThemeProvider } from '@mui/joy';
+import Layouts from '../../components/Layouts';
+import Commands from '../../components/Commands';
+import { SnackbarProvider } from '../../components/SnackbarUtil/SnackbarUtil';
 import Wallpapers from '../../components/Wallpapers';
-import ControlCenter from "../../components/ControlCenter";
-import socketService from "../../utils/socket";
+import ControlCenter from '../../components/ControlCenter';
+import socketService from '../../utils/socket';
 
 function App() {
-
     const widthBox = 3600;
     const [paneDraggable, setPaneDraggable] = React.useState(false);
     const [paneLayouts, setPaneLayouts] = React.useState([]);
@@ -40,46 +45,50 @@ function App() {
     const [filteredLayouts, setFilteredLayouts] = useState(paneLayouts);
 
     const [openSettingsDialog, setOpenSettingsDialog] = React.useState(false);
-    const [wallPaper, setWallPaper] = React.useState("/assets/wallpapers/几何/pexels-jplenio-1103970.jpg");
+    const [wallPaper, setWallPaper] = React.useState(
+        '/assets/wallpapers/几何/pexels-jplenio-1103970.jpg'
+    );
     const [themeMode, setThemeMode] = React.useState('system');
+    const [dockIsShow, setDockIsShow] = React.useState('show');
 
     const [addAppOpen, setAddAppOpen] = React.useState(false);
     const [appName, setAppName] = React.useState('');
     const [appPath, setAppPath] = React.useState('');
     const [appIcons, setAppIcons] = React.useState([]);
     const [defaultLayout, setDefaultLayout] = React.useState('pane');
-    const [openedLayouts, setOpenedLayouts] = useState([{id: 'pane', name: 'Home'}])
+    const [openedLayouts, setOpenedLayouts] = useState([
+        { id: 'pane', name: 'Home' },
+    ]);
 
     const [menuVisible, setMenuVisible] = useState(false);
-    const [menuPosition, setMenuPosition] = useState({x: 0, y: 0});
+    const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
     const [rightClickMenuId, setRightClickMenuId] = useState(null);
     const [rightClickMenuLayout, setRightClickMenuLayout] = useState(null);
     const [rightClickMenuDel, setRightClickMenuDel] = useState(false);
     const [rightClickMenuApp, setRightClickMenuApp] = useState(null);
 
-    const [controlCenterY,setControlCenterY] = useState(0);
+    const [controlCenterY, setControlCenterY] = useState(0);
 
     let host = getUserSettings('settings.host');
 
     const [dockLayouts, setDockLayouts] = React.useState([]);
     const systemApps = [
-        {'i': 'btn|settings', x: 0, y: 0, w: 1, h: 1, static: true},
-        {'i': 'btn|search', x: 1, y: 0, w: 1, h: 1, static: true},
+        { i: 'btn|settings', x: 0, y: 0, w: 1, h: 1, static: true },
+        { i: 'btn|search', x: 1, y: 0, w: 1, h: 1, static: true },
     ];
-
 
     /**
      * 获取最新布局
      */
     const updateLayouts = (layoutName = 'pane') => {
         request({
-            url: "/api/layouts?name=" + layoutName,
-            method: "GET",
-            headers: {"Content-Type": "application/json"},
+            url: '/api/layouts?name=' + layoutName,
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
         }).then((data) => {
-            let apps = []
+            let apps = [];
             for (let i = 0; i < data.data.apps.length; i++) {
-                apps[data.data.apps[i]['id']] = data.data.apps[i]
+                apps[data.data.apps[i]['id']] = data.data.apps[i];
             }
             setAppsAll(apps);
             setPaneLayouts(data.data.layouts);
@@ -90,60 +99,72 @@ function App() {
 
     const updateDockLayouts = (appsPane = []) => {
         request({
-            url: "/api/layouts?name=dock",
-            method: "GET",
-            headers: {"Content-Type": "application/json"},
+            url: '/api/layouts?name=dock',
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
         }).then((data) => {
             let serverDockLayouts = data.data.layouts;
             let mergedAndDeDuplicatedLayouts = [
                 ...serverDockLayouts,
-                ...systemApps.filter(app => !serverDockLayouts.some(layout => layout.i === app.i))
+                ...systemApps.filter(
+                    (app) =>
+                        !serverDockLayouts.some((layout) => layout.i === app.i)
+                ),
             ];
             setDockLayouts(mergedAndDeDuplicatedLayouts);
             let serverApps = data.data.apps;
-            const mergedApps = [...new Map(
-                [...appsPane, ...serverApps].map(app => [app.id, app])
-            ).values()];
+            const mergedApps = [
+                ...new Map(
+                    [...appsPane, ...serverApps].map((app) => [app.id, app])
+                ).values(),
+            ];
             let apps = [];
             for (let i = 0; i < mergedApps.length; i++) {
-                apps[mergedApps[i]['id']] = mergedApps[i]
+                apps[mergedApps[i]['id']] = mergedApps[i];
             }
             setAppsAll(apps);
         });
-    }
+    };
 
     // Rough implementation. Untested.
     function timeout(ms, promise) {
         return new Promise(function (resolve, reject) {
             setTimeout(function () {
-                reject(new Error("timeout"))
-            }, ms)
-            promise.then(resolve, reject)
-        })
+                reject(new Error('timeout'));
+            }, ms);
+            promise.then(resolve, reject);
+        });
     }
 
     // 当组件挂载时获取用户设置
     useState(() => {
         // saveUserSettings('settings.host', host)
-        host = getUserSettings('settings.host')
+        host = getUserSettings('settings.host');
         setControlCenterY(document.documentElement.clientHeight);
-        timeout(1000, fetch(host + "/api/tools/test")).then((response) => {
-            // 请求成功，检查响应状态码
-            if (response.ok) {
-                return response.json();
-            } else {
-                window.location.href = "./connect.html"
-                throw new Error("Error: " + response.statusText);
-            }
-        }).catch((error) => {
-            window.location.href = "./connect.html"
-        }).then((data) => {
-            const wallpaper = getUserSettings('settings.host', host) + getUserSettings('settings.wallpaper', wallPaper);
-            setWallPaper(wallpaper);
-            setThemeMode(getUserSettings('settings.theme', 'dark'));
-            updateLayouts()
-        });
+        timeout(1000, fetch(host + '/api/tools/test'))
+            .then((response) => {
+                // 请求成功，检查响应状态码
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    window.location.href = './connect.html';
+                    throw new Error('Error: ' + response.statusText);
+                }
+            })
+            .catch((error) => {
+                window.location.href = './connect.html';
+            })
+            .then((data) => {
+                const wallpaper =
+                    getUserSettings('settings.host', host) +
+                    getUserSettings('settings.wallpaper', wallPaper);
+                setWallPaper(wallpaper);
+                const isShowDock = getUserSettings('settings.isShowDock', dockIsShow);
+                setDockIsShow(isShowDock);
 
+                setThemeMode(getUserSettings('settings.theme', 'dark'));
+                updateLayouts();
+            });
     }, [wallPaper]);
 
     /**
@@ -159,32 +180,35 @@ function App() {
             return;
         }
         setOpenLoad(true);
-        let bodySend = {"id": id, "type": "apps"}
+        let bodySend = { id: id, type: 'apps' };
         bodySend['position'] = positionClick != null ? positionClick : null;
         return request({
-            url: "/api/apps/open",
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
+            url: '/api/apps/open',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: bodySend,
-        }).then((res) => {
-            if (res.msg === 'empty') {
-                setCommandOpen(true);
-                setRightClickMenuId(id);
-            } else if (res.msg === 'newLayout') {
-                setDefaultLayout(res.data);
-                const isDuplicate = openedLayouts.find((layout) => layout.id === res.data);
-                if (!isDuplicate) {
-                    setOpenedLayouts([...openedLayouts, appsAll[res.data]]);
+        })
+            .then((res) => {
+                if (res.msg === 'empty') {
+                    setCommandOpen(true);
+                    setRightClickMenuId(id);
+                } else if (res.msg === 'newLayout') {
+                    setDefaultLayout(res.data);
+                    const isDuplicate = openedLayouts.find(
+                        (layout) => layout.id === res.data
+                    );
+                    if (!isDuplicate) {
+                        setOpenedLayouts([...openedLayouts, appsAll[res.data]]);
+                    }
+                    updateLayouts(res.data);
                 }
-                updateLayouts(res.data);
-
-            }
-            setOpenLoad(false);
-        }).catch(error => {
-            // 处理错误
-            setOpenLoad(false);
-            throw error; // re-throw the error to propagate it further
-        });
+                setOpenLoad(false);
+            })
+            .catch((error) => {
+                // 处理错误
+                setOpenLoad(false);
+                throw error; // re-throw the error to propagate it further
+            });
     }
 
     /**
@@ -193,24 +217,24 @@ function App() {
      * @param table
      */
     const saveLayouts = (layoutIn, table = defaultLayout) => {
-        let layoutNew = []
-        let layoutIds = []
+        let layoutNew = [];
+        let layoutIds = [];
         for (let i = 0; i < layoutIn.length; i++) {
             if (!layoutIds.includes(layoutIn[i]['i'])) {
-                layoutIds.push(layoutIn[i]['i'])
-                layoutNew.push(layoutIn[i])
+                layoutIds.push(layoutIn[i]['i']);
+                layoutNew.push(layoutIn[i]);
             }
         }
         if (table === defaultLayout) {
-            setPaneLayouts(layoutNew)
+            setPaneLayouts(layoutNew);
         } else if (table === 'dock') {
-            setDockLayouts(layoutNew)
+            setDockLayouts(layoutNew);
         }
         request({
-            url: "/api/layouts/save",
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: {"layouts": layoutNew, "table": table},
+            url: '/api/layouts/save',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: { layouts: layoutNew, table: table },
         }).then((data) => {
             if (table === defaultLayout) {
                 setPaneLayouts(data.data.layouts);
@@ -218,8 +242,7 @@ function App() {
                 setDockLayouts(data.data.layouts);
             }
         });
-
-    }
+    };
     /**
      * 触发右键菜单
      * @param e
@@ -228,10 +251,16 @@ function App() {
      * @param rightClick
      * @param doubleClick
      */
-    const handleContextMenu = (e, layoutType, id, rightClick = false, doubleClick = false) => {
+    const handleContextMenu = (
+        e,
+        layoutType,
+        id,
+        rightClick = false,
+        doubleClick = false
+    ) => {
         setMenuVisible(false);
         e.preventDefault();
-        setMenuPosition({x: e.clientX, y: e.clientY});
+        setMenuPosition({ x: e.clientX, y: e.clientY });
         setRightClickMenuDel(false);
         if (layoutType === 'search') {
             setRightClickMenuDel(true);
@@ -247,8 +276,20 @@ function App() {
             setRightClickMenuId(id);
             setRightClickMenuLayout(layoutType);
         }
-
     };
+
+    /**
+     * 返回首页
+     */
+    const goHome = ()=>{
+        pageGo('pane');
+    };
+
+    const goSetting = ()=>{
+        setOpenSettingsDialog(true);
+        setMenuVisible(false);
+    };
+
     /**
      * 删除应用
      */
@@ -256,57 +297,60 @@ function App() {
         let layoutsNew = table === 'dock' ? dockLayouts : paneLayouts;
         for (let i = 0; i < layoutsNew.length; i++) {
             if (layoutsNew[i]['i'] === rightClickMenuId) {
-                layoutsNew.splice(i, 1)
-                break
+                layoutsNew.splice(i, 1);
+                break;
             }
         }
         if (softDelete === false) {
             request({
-                url: "/api/apps",
-                method: "DELETE",
-                headers: {"Content-Type": "application/json"},
-                body: {"id": rightClickMenuId},
+                url: '/api/apps',
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: { id: rightClickMenuId },
             }).then((data) => {
-                let apps = []
+                let apps = [];
                 for (let i = 0; i < data.data.length; i++) {
-                    apps[data.data[i]['id']] = data.data[i]
+                    apps[data.data[i]['id']] = data.data[i];
                 }
                 setAppsAll(apps);
                 setFilteredLayouts(data.data);
             });
         }
-        saveLayouts(layoutsNew, table === "dock" ? "dock" : defaultLayout)
-    }
+        saveLayouts(layoutsNew, table === 'dock' ? 'dock' : defaultLayout);
+    };
     // 固定应用
     const pinApp = () => {
         // 固定到dock栏
         if (rightClickMenuLayout === 'pane') {
             let layoutOld = dockLayouts.slice();
-            layoutOld.push({'i': rightClickMenuId, 'x': 4, 'y': 0, 'w': 1, 'h': 1})
-            saveLayouts(layoutOld, "dock")
+            layoutOld.push({ i: rightClickMenuId, x: 4, y: 0, w: 1, h: 1 });
+            saveLayouts(layoutOld, 'dock');
         } else {
             // 取消固定
-            deleteApp("dock", true)
+            deleteApp('dock', true);
         }
-    }
+    };
     // 实时搜索
     const handleSearchInput = (searchInput) => {
         // 根据搜索输入过滤 layouts
-        let appsSearch = Object.values(appsAll)
+        let appsSearch = Object.values(appsAll);
         for (let i = 0; i < appsSearch.length; i++) {
-            appsSearch[i]['i'] = appsSearch[i]['id']
+            appsSearch[i]['i'] = appsSearch[i]['id'];
         }
-        const filtered = appsSearch.filter(app => {
+        const filtered = appsSearch.filter((app) => {
             const appFind = appsAll[app['id']];
-            return appFind['name'].includes(searchInput) || appFind['path'].includes(searchInput);
+            return (
+                appFind['name'].includes(searchInput) ||
+                appFind['path'].includes(searchInput)
+            );
         });
         setFilteredLayouts(filtered);
     };
     const pageGo = (layoutName) => {
         setDefaultLayout(layoutName);
-        updateLayouts(layoutName)
+        updateLayouts(layoutName);
         if (layoutName === 'pane') {
-            setOpenedLayouts([{id: 'pane', name: 'Home'}]);
+            setOpenedLayouts([{ id: 'pane', name: 'Home' }]);
         } else {
             let layoutsNew = [];
             for (let i = 0; i < openedLayouts.length; i++) {
@@ -316,11 +360,8 @@ function App() {
                     break;
                 }
             }
-
         }
-
-    }
-
+    };
 
     const addAppLayout = () => {
         setAppName('');
@@ -330,7 +371,7 @@ function App() {
         setRightClickMenuApp(null);
         setMenuVisible(false);
         setAddAppOpen(true);
-    }
+    };
 
     useEffect(() => {
         // 获取当前页面的URL
@@ -341,13 +382,12 @@ function App() {
         const pathParam = urlParams.get('path');
 
         setAddAppOpen(addAppOpenParam != null);
-        setAppPath(pathParam == null ? '' : pathParam)
+        setAppPath(pathParam == null ? '' : pathParam);
 
         // 或者你可以将这些值赋给组件的状态
         // this.setState({ addAppOpenValue: addAppOpen, pathValue: path });
         // （假设你在一个类组件中，并且有setState方法）
         socketService.connect(host);
-
 
         return () => {
             socketService.disconnect();
@@ -358,102 +398,181 @@ function App() {
         <ThemeProvider>
             <CssVarsProvider
                 defaultMode={themeMode}
-                modeStorageKey={themeMode === "dark" ? "joy-mode-scheme-dark" : ""}
-            >
+                modeStorageKey={
+                    themeMode === 'dark' ? 'joy-mode-scheme-dark' : ''
+                }>
                 <SnackbarProvider>
                     {menuVisible && (
-                        <RightClickMenu xPos={menuPosition.x} yPos={menuPosition.y} id={rightClickMenuId}
-                                        hideMenu={() => {
-                                            setMenuVisible(false);
-                                        }}
-                                        deleteBtn={(layoutType) => {
-                                            deleteApp(layoutType, false);
-                                        }}
-                                        editBtn={() => {
-                                            setAppName(appsAll[rightClickMenuId]['name']);
-                                            setAppPath(appsAll[rightClickMenuId]['path']);
-                                            setAppIcons([appsAll[rightClickMenuId]['icon']]);
-                                            setRightClickMenuApp(appsAll[rightClickMenuId]);
-                                            setAddAppOpen(true);
-                                            setMenuVisible(false);
-                                        }}
-                                        pinBtn={pinApp} commandBtn={() => {
-                            setCommandOpen(true);
-                        }}
-                                        setMenuVisible={setMenuVisible} layoutType={rightClickMenuLayout}/>
+                        <RightClickMenu
+                            xPos={menuPosition.x}
+                            yPos={menuPosition.y}
+                            id={rightClickMenuId}
+                            hideMenu={() => {
+                                setMenuVisible(false);
+                            }}
+                            deleteBtn={(layoutType) => {
+                                deleteApp(layoutType, false);
+                            }}
+                            editBtn={() => {
+                                setAppName(appsAll[rightClickMenuId]['name']);
+                                setAppPath(appsAll[rightClickMenuId]['path']);
+                                setAppIcons([
+                                    appsAll[rightClickMenuId]['icon'],
+                                ]);
+                                setRightClickMenuApp(appsAll[rightClickMenuId]);
+                                setAddAppOpen(true);
+                                setMenuVisible(false);
+                            }}
+                            pinBtn={pinApp}
+                            commandBtn={() => {
+                                setCommandOpen(true);
+                            }}
+                            setMenuVisible={setMenuVisible}
+                            layoutType={rightClickMenuLayout}
+                        />
                     )}
 
                     <div className="video-background">
-                        <ControlCenter defaultLayout={defaultLayout} yPosition={controlCenterY} setYPosition={setControlCenterY}/>
+                        <ControlCenter
+                            defaultLayout={defaultLayout}
+                            yPosition={controlCenterY}
+                            setYPosition={setControlCenterY}
+                        />
 
                         {commandOpen && (
-                            <Commands app_id={rightClickMenuId} filteredLayouts={filteredLayouts}
-                                      defaultPosition={menuPosition} setCommandOpen={setCommandOpen}/>
+                            <Commands
+                                app_id={rightClickMenuId}
+                                filteredLayouts={filteredLayouts}
+                                defaultPosition={menuPosition}
+                                setCommandOpen={setCommandOpen}
+                            />
                         )}
 
-                        <SettingsDialog defaultLayout={defaultLayout} open={openSettingsDialog} onClose={() => {
-                            setOpenSettingsDialog(false);
-                            updateLayouts(defaultLayout)
-                        }}>
-                            <WallpaperBasicGrid sx={{height: "100%"}} onClick={(videoSource) => {
-                                setWallPaper(host + videoSource);
-                            }}></WallpaperBasicGrid>
+                        <SettingsDialog
+                            defaultLayout={defaultLayout}
+                            open={openSettingsDialog}
+                            onClose={() => {
+                                setOpenSettingsDialog(false);
+                                updateLayouts(defaultLayout);
+                            }}>
+                            <WallpaperBasicGrid
+                                sx={{ height: '100%' }}
+                                onClick={(videoSource) => {
+                                    setWallPaper(host + videoSource);
+                                }}></WallpaperBasicGrid>
                         </SettingsDialog>
                         {addAppOpen && (
-                            <AddApplication open={addAppOpen} app_id={rightClickMenuId} app={rightClickMenuApp}
-                                            apps={filteredLayouts} appName={appName} appPath={appPath}
-                                            defaultLayout={defaultLayout}
-                                            appIcons={appIcons} onClose={() => {
-                                const urlParams = new URLSearchParams(window.location.search);
+                            <AddApplication
+                                open={addAppOpen}
+                                app_id={rightClickMenuId}
+                                app={rightClickMenuApp}
+                                apps={filteredLayouts}
+                                appName={appName}
+                                appPath={appPath}
+                                defaultLayout={defaultLayout}
+                                appIcons={appIcons}
+                                onClose={() => {
+                                    const urlParams = new URLSearchParams(
+                                        window.location.search
+                                    );
 
-                                if (urlParams.get('addAppOpen') != null) {
-                                    const protocol = window.location.protocol;
-                                    const hostnameWithPort = window.location.host;
-                                    window.location.href = protocol + '//' + hostnameWithPort;
-                                }
+                                    if (urlParams.get('addAppOpen') != null) {
+                                        const protocol =
+                                            window.location.protocol;
+                                        const hostnameWithPort =
+                                            window.location.host;
+                                        window.location.href =
+                                            protocol + '//' + hostnameWithPort;
+                                    }
 
-                                setAddAppOpen(false);
-                                updateLayouts(defaultLayout);
-                            }}/>
+                                    setAddAppOpen(false);
+                                    updateLayouts(defaultLayout);
+                                }}
+                            />
                         )}
 
-                        <Search open={searchOpen} onSearchInput={handleSearchInput} onClose={() => {
-                            setMenuVisible(false);
-                            setSearchOpen(false);
-                        }}>
-                            <Grid container columns={{xs: 3, sm: 6, md: 12, lg: 15}}
-                                  sx={{width: "100%"}}>
+                        <Search
+                            open={searchOpen}
+                            onSearchInput={handleSearchInput}
+                            onClose={() => {
+                                setMenuVisible(false);
+                                setSearchOpen(false);
+                            }}>
+                            <Grid
+                                container
+                                columns={{ xs: 3, sm: 6, md: 12, lg: 15 }}
+                                sx={{ width: '100%' }}>
                                 {filteredLayouts.map((app, index) => (
-                                    <Grid xs={1} sm={1} md={1} sx={{height: "6rem"}}>
-                                        <div key={app['id']} unselectable="on" className="xBlade-icons"
-                                             style={{
-                                                 width: "3.5rem",
-                                                 height: "100%",
-                                                 padding: "0.5rem 0",
-                                                 boxSizing: "border-box"
-                                             }}
-                                             onContextMenu={(e) => handleContextMenu(e, 'search', app['id'], true)}>
-                                            <XBladeIcon id={app['id']} size={1} name={app['name']} appType={app['type']}
-                                                        iconPath={app['icon'] !== '' ? host + app['icon'] : ''}
-                                                        appPath={app['path']} onClickedBtn={onClicked}
-                                                        doubleClickBtn={(e) => handleContextMenu(e, 'search', app['i'], false, true)}/>
+                                    <Grid
+                                        xs={1}
+                                        sm={1}
+                                        md={1}
+                                        sx={{ height: '6rem' }}>
+                                        <div
+                                            key={app['id']}
+                                            unselectable="on"
+                                            className="xBlade-icons"
+                                            style={{
+                                                width: '3.5rem',
+                                                height: '100%',
+                                                padding: '0.5rem 0',
+                                                boxSizing: 'border-box',
+                                            }}
+                                            onContextMenu={(e) =>
+                                                handleContextMenu(
+                                                    e,
+                                                    'search',
+                                                    app['id'],
+                                                    true
+                                                )
+                                            }>
+                                            <XBladeIcon
+                                                id={app['id']}
+                                                size={1}
+                                                name={app['name']}
+                                                appType={app['type']}
+                                                iconPath={
+                                                    app['icon'] !== ''
+                                                        ? host + app['icon']
+                                                        : ''
+                                                }
+                                                appPath={app['path']}
+                                                onClickedBtn={onClicked}
+                                                doubleClickBtn={(e) =>
+                                                    handleContextMenu(
+                                                        e,
+                                                        'search',
+                                                        app['i'],
+                                                        false,
+                                                        true
+                                                    )
+                                                }
+                                            />
                                         </div>
                                     </Grid>
                                 ))}
                             </Grid>
                         </Search>
-                        <Header editing={paneDraggable}
-                                defaultLayout={defaultLayout}
-                                setPaneDraggable={setPaneDraggable}
-                                yPosition={controlCenterY} setYPosition={setControlCenterY}
-                                StopPaneEditing={() => {
-                                    setPaneDraggable(false);
-                                    saveLayouts(paneLayouts, defaultLayout);
-                                }} openAddDiag={addAppLayout}/>
+                        <Header
+                            editing={paneDraggable}
+                            defaultLayout={defaultLayout}
+                            setPaneDraggable={setPaneDraggable}
+                            yPosition={controlCenterY}
+                            setYPosition={setControlCenterY}
+                            dockIsShow={dockIsShow}
+                            goHome={goHome}
+                            goSetting={goSetting}
+                            StopPaneEditing={() => {
+                                setPaneDraggable(false);
+                                saveLayouts(paneLayouts, defaultLayout);
+                            }}
+                            openAddDiag={addAppLayout}
+                        />
                         <div className="Pane">
-
                             <Layouts
-                                layouts={paneLayouts} paneDraggable={paneDraggable} appsAll={appsAll}
+                                layouts={paneLayouts}
+                                paneDraggable={paneDraggable}
+                                appsAll={appsAll}
                                 updateLayouts={updateLayouts}
                                 layoutName={defaultLayout}
                                 rowHeight={25}
@@ -485,26 +604,42 @@ function App() {
                                 }}
                                 setCommandOpen={(value) => {
                                     setCommandOpen(value);
-                                }}/>
+                                }}
+                            />
                         </div>
 
-                        <div className="Dock">
+                        <div
+                            className="Dock"
+                            style={{ display: dockIsShow == 'show' ? 'flex' : 'none' }}>
                             <HorizontalScrollbar>
-                                <div style={{display: "flex", flexDirection: "row"}}>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                    }}>
                                     <div className="opened-layouts">
                                         {openedLayouts.map((appOpen, idx) => {
                                             if (appOpen.id === 'pane') {
                                                 return (
-                                                    <div key={appOpen.id} className="xBlade-icons opened-apps">
-                                                        <XBladeIcon id="btn|home" name="首页"
-                                                                    iconPath={host + "/assets/icons/home.png"}
-                                                                    onClickedBtn={(id, location, setOpenLoad) => {
-                                                                        pageGo('pane')
-                                                                        setOpenLoad(false)
-                                                                        // window.location.reload();
-                                                                    }}/>
+                                                    <div
+                                                        key={appOpen.id}
+                                                        className="xBlade-icons opened-apps">
+                                                        <XBladeIcon
+                                                            id="btn|home"
+                                                            name="首页"
+                                                            iconPath={
+                                                                host +
+                                                                '/assets/icons/home.png'
+                                                            }
+                                                            onClickedBtn={(
+                                                                id,
+                                                                location,
+                                                                setOpenLoad
+                                                            ) => {
+                                                                goHome()
+                                                            }}
+                                                        />
                                                     </div>
-
                                                 );
                                             } else {
                                                 return (
@@ -525,38 +660,62 @@ function App() {
                                             }
                                         })}
                                     </div>
-                                    <div style={{
-                                        backgroundColor: "#ffffff73",
-                                        width: "1px",
-                                        height: "5rem",
-                                        margin: "auto 0 auto 0.5rem"
-                                    }}></div>
+                                    <div
+                                        style={{
+                                            backgroundColor: '#ffffff73',
+                                            width: '1px',
+                                            height: '5rem',
+                                            margin: 'auto 0 auto 0.5rem',
+                                        }}></div>
 
-                                    <GridLayout className="layout" layout={dockLayouts}
-                                                cols={42} rowHeight={90} compactType={'horizontal'}
-                                                width={widthBox} isDraggable={false} isResizable={false}
-                                                onLayoutChange={(layoutIn) => {
-                                                    setDockLayouts(layoutIn);
-                                                }}>
+                                    <GridLayout
+                                        className="layout"
+                                        layout={dockLayouts}
+                                        cols={42}
+                                        rowHeight={90}
+                                        compactType={'horizontal'}
+                                        width={widthBox}
+                                        isDraggable={false}
+                                        isResizable={false}
+                                        onLayoutChange={(layoutIn) => {
+                                            setDockLayouts(layoutIn);
+                                        }}>
                                         <div key="btn|settings">
-                                            <XBladeIcon id="btn|settings" name="设置"
-                                                        iconPath={host + "/assets/icons/settings-light.png"}
-                                                        onClickedBtn={(id, location, setOpenLoad) => {
-                                                            setOpenSettingsDialog(true);
-                                                            setMenuVisible(false);
-                                                            setOpenLoad(false);
-                                                        }}/>
+                                            <XBladeIcon
+                                                id="btn|settings"
+                                                name="设置"
+                                                iconPath={
+                                                    host +
+                                                    '/assets/icons/settings-light.png'
+                                                }
+                                                onClickedBtn={(
+                                                    id,
+                                                    location,
+                                                    setOpenLoad
+                                                ) => {
+                                                    goSetting()
+                                                }}
+                                            />
                                         </div>
                                         <div key="btn|search">
-                                            <XBladeIcon id="btn|search" name="搜索"
-                                                        iconPath={host + "/assets/icons/apps.png"}
-                                                        onClickedBtn={(id, location, setOpenLoad) => {
-                                                            setSearchOpen(true);
-                                                            setMenuVisible(false);
-                                                            setOpenLoad(false);
-                                                        }}/>
+                                            <XBladeIcon
+                                                id="btn|search"
+                                                name="搜索"
+                                                iconPath={
+                                                    host +
+                                                    '/assets/icons/apps.png'
+                                                }
+                                                onClickedBtn={(
+                                                    id,
+                                                    location,
+                                                    setOpenLoad
+                                                ) => {
+                                                    setSearchOpen(true);
+                                                    setMenuVisible(false);
+                                                    setOpenLoad(false);
+                                                }}
+                                            />
                                         </div>
-
 
                                         {dockLayouts.map((app, index) => {
                                             if (!app['i'].startsWith('btn|')) {
@@ -579,15 +738,13 @@ function App() {
                                         })}
                                     </GridLayout>
                                 </div>
-
                             </HorizontalScrollbar>
                         </div>
-                        <Wallpapers path={wallPaper}/>
+                        <Wallpapers path={wallPaper} />
                     </div>
                 </SnackbarProvider>
             </CssVarsProvider>
         </ThemeProvider>
-
     );
 }
 

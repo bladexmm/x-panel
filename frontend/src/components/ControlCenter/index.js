@@ -153,7 +153,7 @@ const ControlCenter = ({defaultLayout, yPosition, setYPosition}) => {
         <React.Fragment>
             <Grid container className="control-center"
                   spacing={2}
-                  sx={{flexGrow: 1, bottom: yPosition, transition: isDragging ? 0 : '0.3s', overflowY: 'scroll'}}>
+                  sx={{flexGrow: 1,zIndex:1500, bottom: yPosition, transition: isDragging ? 0 : '0.3s', overflowY: 'scroll'}}>
 
                 <Grid xs={12} md={6}>
                     <Sheet variant="soft" sx={{p: 2, borderRadius: 'sm', backgroundColor: 'transparent'}}>
@@ -286,7 +286,7 @@ const ControlCenter = ({defaultLayout, yPosition, setYPosition}) => {
 
             <div className='control-center-close'
                  onClick={() => setYPosition(document.documentElement.clientHeight)}
-                 style={{bottom: yPosition, transition: isDragging ? 0 : '0.3s'}}>
+                 style={{bottom: yPosition,zIndex:1500, transition: isDragging ? 0 : '0.3s'}}>
                 <div className='control-center-close-btn'></div>
             </div>
         </React.Fragment>
