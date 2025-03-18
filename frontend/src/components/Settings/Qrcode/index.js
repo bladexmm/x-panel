@@ -384,8 +384,6 @@ export default function Qrcode({defaultLayout}) {
                                             endDecorator={<Button onClick={copyLink}>复制</Button>}
                                         />
                                     </CopyToClipboard>
-
-
                                 </ListItemContent>
                             </Grid>
                         </AccordionDetails>

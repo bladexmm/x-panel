@@ -1,6 +1,6 @@
 
 from libs.utils.nodes.base import alias, getInput, nodeOutput
-from libs.utils.system.operator import getProcesses, getUsage
+from libs.utils.system.operator import getProcesses, getUsage, setVolume, volume
 
 
 @alias("系统/获取所有窗口(Windows)")
@@ -11,3 +11,11 @@ def Windows(node):
 def SystemUsage(node):
     usage = getUsage()
     return nodeOutput(1, node, 'out', ['',usage['cpu'],usage['memory']])
+
+@alias("系统/设置音量(SetVolume)")
+def updateVolume(node):
+    data = getInput(node['input'], 1)
+    if data != None:
+        data = int(data)
+        setVolume(data)
+    return nodeOutput(1, node, 'out', ['',volume()])
