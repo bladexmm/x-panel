@@ -26,6 +26,7 @@ def is_registry_startup(params):
         print("权限错误: 请以管理员身份运行此脚本")
         return False
 
+
 def get_startup_registry():
     if is_registry_startup([]):
         # 定义要检查的注册表路径和键名
@@ -50,14 +51,12 @@ def get_startup_registry():
     return False
 
 
-
-
 def launch_application():
     path = get_startup_registry()
-    project_path = path.replace("client_launcher.exe","")
+    project_path = path.replace("client_launcher.exe", "")
     program_path = project_path + "XBLADE.exe"
     try:
-        subprocess.Popen([program_path], shell = True, cwd=os.path.dirname(project_path))
+        subprocess.Popen([program_path], shell = True, cwd = os.path.dirname(project_path))
         # 监控是否启动成功
         for a in range(10):
             # 检查所有进程
@@ -73,5 +72,6 @@ def launch_application():
     except Exception as e:
         print(f"出现错误: {e}")
     return
+
 
 launch_application()
